@@ -1,0 +1,38 @@
+$loading-md-box-shadow: none !important;   
+$refresher-text-color : #fff !important;    
+$refresher-icon-color : #fff !important;
+ion-content{
+    background-color: #9190ce !important;
+    ion-label {
+        color: white!important;
+    }
+    ion-item{
+        padding-left: 16px!important;
+        padding-right: 16px!important;
+        box-shadow: none!important;
+        background-color:transparent!important;
+        border:none!important;
+        color:#fff!important;
+    }
+    
+}
+.toolbar-background{
+    background-color: #9190ce !important;
+    color:#fff!important;
+}
+.toolbar-title-md,.bar-button-default-md{
+    color:#fff!important;
+}
+.btn-default{
+    background-color: #9190ce!important;
+    display: block;
+    width:88%;
+    height:40px!important;
+    margin:0 auto!important;
+}
+
+
+ion-icon {
+    font-size: 20px !important; 
+}
+

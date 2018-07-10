@@ -1,0 +1,8 @@
+{
+  "name": "A1C_blank",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

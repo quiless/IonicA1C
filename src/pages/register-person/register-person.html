@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Cadastro de usuário
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-item>
+    <ion-label color="primary" stacked> Nome </ion-label>
+    <ion-input type="text" [(ngModel)]=userInfo.Name></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label color="primary" stacked> Email </ion-label>
+    <ion-input type="email" [(ngModel)]=userInfo.Email></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label color="primary" stacked> Senha </ion-label>
+    <ion-input type="password" [(ngModel)]=userInfo.Password></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label color="primary" stacked> Confirmar senha </ion-label>
+    <ion-input type="password" [(ngModel)]=userInfo.ConfirmPassword></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label color="primary" stacked> Celular </ion-label>
+    <ion-input type="text" [(ngModel)]=userInfo.PhoneNumber></ion-input>
+  </ion-item>
+  <button class="btn-default" ion-button (click)='saveUserInfo()'> Cadastrar </button>
+</ion-content>

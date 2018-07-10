@@ -1,0 +1,20 @@
+<ion-content>
+  <img class="img-logo" src="./assets/imgs/logo.png">
+  <ion-item>
+    <ion-label color="white" stacked> Usuário </ion-label>
+    <ion-input type="text" [(ngModel)]=login.Username></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label color="white" stacked> Senha </ion-label>
+    <ion-input type="password" [(ngModel)]=login.Password></ion-input>
+  </ion-item>
+  <div id="buttons">
+    <ion-row>
+      <button ion-button class="btn-default"  (click)='signIn()'> Entrar </button>
+    </ion-row>
+    <ion-row>
+      <button ion-button class="btn-default"  (click)='redirectRegisterPerson()'> Cadastrar </button>
+    </ion-row>
+  </div>
+</ion-content>
+
