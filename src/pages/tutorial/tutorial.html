@@ -1,0 +1,31 @@
+
+
+<ion-content>
+    <ion-slides paginationClickable=false
+                zoom=true
+                pager=true
+                parallax=true
+                #mySlider>
+
+      <ion-slide *ngFor="let item of videos; let i = index">
+          <div id="titleVideo">  Instruções - Passo {{ (i+1) }} </div>
+          <video  [autoplay]="true" 
+            [(src)]="item.videoUri">      
+          </video>
+
+        
+    <div id="buttonsTutorial">
+        <ion-row>
+          <ion-col col-6>
+            <button ion-button class="btn-default" (click)='slidePrev(i)'> Voltar </button>
+          </ion-col>
+          <ion-col col-6>
+            <button ion-button class="btn-default" (click)= 'slideNext(i)'> {{ i == 2 ? 'Finalizar' : 'Próximo'}} </button>
+          </ion-col>
+        </ion-row>
+      </div>
+      </ion-slide>
+    </ion-slides>
+</ion-content>
+
+

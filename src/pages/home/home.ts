@@ -1,13 +1,18 @@
 /* Angular */
-
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController, LoadingController, AlertController } from 'ionic-angular';
+
+/* Views */
+import { TutorialPage } from '../../pages/tutorial/tutorial'
 
 
 @Component({
   selector: 'page-login',
   templateUrl: 'home.html',
+  entryComponents:[TutorialPage]
 })
+
+
 
 export class HomePage {
 
@@ -18,6 +23,8 @@ export class HomePage {
   ionViewDidLoad() {
    
   }
-
- 
+  
+  redirectTutorialPage(){
+    this.navCtrl.push(TutorialPage);
+  }
 }
