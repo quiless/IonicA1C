@@ -1,0 +1,185 @@
+
+
+<ion-content>
+    <ion-slides paginationClickable=false
+                zoom=true
+                pager=true
+                parallax=true
+                #mySlider>
+
+      <ion-slide>
+        <div id="titleVideo">  Inserir Resultado </div>
+
+        <ion-item>
+          <ion-label color="primary" stacked> Nome </ion-label>
+          <ion-input type="text" [(ngModel)]=patient.Name ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label color="primary" stacked> RG </ion-label>
+          <ion-input type="text" [(ngModel)]=patient.RG [brmasker]="{mask:'00.000.000-5', len:12, type:'num'}"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label color="primary" stacked> Sexo </ion-label>
+          <ion-select [(ngModel)]="patient.Gender">
+            <ion-option *ngFor="let gender of Genders" [value]="gender.value"> {{ gender.Name }} </ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Data Nasc.</ion-label>
+          <ion-datetime 
+            [(ngModel)]=patient.Birthdate
+            displayFormat="DD/MM/YYYY" 
+            doneText="Ok"
+            cancelText="Cancelar">
+          </ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-label color="primary" stacked> Celular </ion-label>
+          <ion-input type="text" [(ngModel)]=patient.PhoneNumber [brmasker]="{phone: true}" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label color="primary" stacked> Email </ion-label>
+          <ion-input type="email" [(ngModel)]=patient.Email ></ion-input>
+        </ion-item>
+
+        <ion-col col-12>
+            <button ion-button class="btn-default" (click)='getPatientByRG()'> Buscar paciente por RG </button>
+        </ion-col>
+        <ion-row>
+          <ion-col col-6>
+            <button ion-button class="btn-default" (click)='savePatient(i)'> Cadastrar </button>
+          </ion-col>
+          <ion-col col-6>
+            <button ion-button class="btn-default" (click)= 'slideNext(i)'> Pular </button>
+          </ion-col>
+        </ion-row>
+      </ion-slide>
+
+
+      <ion-slide>
+        <div id="titleVideo">  Inserir Resultado </div>
+        
+        [FOTOAPARELHOA1C]
+        <ion-item>
+            <ion-label color="primary" stacked> Resultado </ion-label>
+            <ion-input type="email" ></ion-input>
+          </ion-item>
+
+        <div>
+          <ion-row>
+          </ion-row>
+          <ion-row>
+            <ion-col col-6>
+              <button ion-button class="btn-default" (click)='slidePrev(i)'> Voltar </button>
+            </ion-col>
+            <ion-col col-6>
+              <button ion-button class="btn-default" (click)= 'slideNext(i)'> Inserir </button>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-slide>
+
+
+
+      <ion-slide>
+        <div id="titleVideo">  Mini Laudo </div>
+        
+      <!--   <ion-col col-12>
+          
+          <ion-row>
+            <b>Resultado : 13 %</b>
+          </ion-row>
+          <ion-row>
+            Resul. Calc : 122
+          </ion-row>
+        </ion-col>
+
+        <ion-col col-12>
+          <ion-col col-4>
+              [GráficoDoLaudo]
+            </ion-col>
+            <ion-col col-8>
+              <ion-row> 12/12/2018 </ion-row>
+              <ion-row> Pré-Texto </ion-row> 
+              <ion-row>
+                Repetir em (Envio SMS)
+              </ion-row>
+              <ion-row>
+                  30 Dias
+              </ion-row> 
+              <ion-row>
+                  60 Dias
+              </ion-row>
+              <ion-row>
+                  90 Dias
+              </ion-row> 
+            </ion-col>
+          </ion-col> -->
+
+              <ion-grid>
+                <ion-row>
+                <ion-col width-20><b>Resultado: 13%</b></ion-col>
+                  <ion-col width-80>
+                      <ion-row>
+                        
+                      </ion-row>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col width-20>Result.Calc : 203</ion-col>
+                  <ion-col width-80>
+                      <ion-row>
+                      </ion-row>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col col-2>
+                    <input type="range" name="volume" orient="vertical">
+                  </ion-col>
+                  <ion-col col-4>
+                      <div class="rangeGraph">
+                        <div class="red rangeBlock"></div>
+                        <div class="yellow rangeBlock"></div>
+                        <div class="green rangeBlock"></div>
+                      </div>
+                  </ion-col>
+                  <ion-col col-6>
+                      <ion-row>
+                        12/12/2018 12:32 - Texto Pré-definido
+                      </ion-row>
+                      <ion-row>
+                        <ion-item>
+                          <ion-label stacked> Repetir em (Envio Sms) </ion-label>
+                          <ion-select>
+                            <ion-option> </ion-option>
+                          </ion-select>
+                        </ion-item>
+                      </ion-row>
+                  </ion-col>
+                </ion-row>
+            
+              </ion-grid>
+          
+
+        <div>
+            <ion-row>
+              <ion-col col-12>
+                <button ion-button class="btn-default" (click)='slidePrev(i)'> Enviar Resultado SMS/E-mail </button>
+              </ion-col>
+            </ion-row>
+          <ion-row>
+            <ion-col col-6>
+              <button ion-button class="btn-default" (click)='slidePrev(i)'> Voltar </button>
+            </ion-col>
+            <ion-col col-6>
+              <button ion-button class="btn-default" (click)= 'slideNext(2)'> Finalizar </button>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-slide> 
+
+
+    </ion-slides>
+</ion-content>
+
+

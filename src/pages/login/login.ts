@@ -35,7 +35,8 @@ export class LoginPage {
               private authService : AuthService,
               private userInfoService : UserInfoService,
               private storage : Storage
-            ) {
+            ) {  
+
   }
 
   ionViewDidLoad() {
@@ -58,8 +59,7 @@ export class LoginPage {
 
   signIn(){
       let blockUi = this.loadingController.create({
-        spinner: 'ios',
-        duration: 2000
+        spinner: 'ios'
       });
 
       let alert = this.alertController.create({
@@ -75,10 +75,14 @@ export class LoginPage {
         this.storage.set("userLogin", this.login);
         this.getInformationsUserLogged().subscribe(result => {
           let response = (JSON.parse(result["_body"]));
+          console.log(response);
           this.storage.set("userInfoLogged", response);
           this.redirectHome();
+          blockUi.dismiss();
         }, error => {
           alert.setMessage(error);
+          alert.present();
+          blockUi.dismiss();
         })
       }, error => {
         alert.setMessage("Usuário e/ou senha são inválidos!");

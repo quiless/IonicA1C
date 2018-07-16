@@ -1,0 +1,50 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title>
+        Importar paciente
+      </ion-title>
+      <ion-buttons end>
+          <button ion-button (click)="dismiss()"> Fechar </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+
+
+  <ion-content>
+ 
+    <ion-row>
+      <ion-item>
+        <ion-label color="primary" stacked> RG Paciente : </ion-label>
+        <ion-input type="text"> </ion-input>
+      </ion-item>
+    </ion-row>
+    <ion-row>
+        <ion-col col-12>
+          <button ion-button class="btn-default"> Solicitar permissão </button>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <div id="textImport">
+          Digite o codigo enviado ao numero final xxxx-1234 ou email xxxxx@xxx.com.br
+      </div>
+    </ion-row>
+
+    <ion-row>
+      <ion-item>
+        <ion-label color="primary" stacked> Insira o código </ion-label>
+        <ion-input type="text"> </ion-input>
+      </ion-item>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12>
+        <button ion-button class="btn-default"> Importar </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col col-12>
+            <button ion-button class="btn-default"> Cancelar </button>
+          </ion-col>
+    </ion-row>
+  </ion-content>

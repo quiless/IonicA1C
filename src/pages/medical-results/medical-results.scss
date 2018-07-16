@@ -1,0 +1,45 @@
+
+
+#buttonsHome button {
+  height:80px!important;
+  margin-top: 2rem !important;
+}
+
+
+#titleVideo {
+  color: #fff !important;
+}
+
+input[type=range][orient=vertical]
+{
+    writing-mode: bt-lr; /* IE */
+    -webkit-appearance: slider-vertical; /* WebKit */
+    width: 8px;
+    height: 175px;
+    padding: 0 5px;
+}
+
+.rangeBlock {
+  width: 7rem !important;
+  height: 5.8rem !important;
+}
+
+.red {
+  background-color: red !important;
+  border-color: black !important;
+}
+
+.green {
+  background-color: green !important;
+  border-color: black !important;
+}
+
+.yellow {
+  background-color: yellow !important;
+  border-color: black !important;
+}
+
+.rangeGraph {
+  border: 1rem !important;
+  border-color: black !important;
+}

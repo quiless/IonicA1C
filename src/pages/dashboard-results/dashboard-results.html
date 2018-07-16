@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+        Resultados
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+        <ion-row>
+            <ion-col col-6>
+                    <ion-icon name="person-add" (click)='importPatient()'> </ion-icon> Importar Paciente
+            </ion-col>
+            <ion-col col-6>
+                    <ion-icon name="funnel" (click)='showDashboardFilter()'></ion-icon> Filtro
+            </ion-col>
+        </ion-row>
+
+
+    <ngx-datatable
+        class="bootstrap"
+        [rows]="rows"
+        [loadingIndicator]="loadingIndicator"
+        [columns]="columns"
+        [columnMode]="'force'"
+        [headerHeight]="40"
+        [summaryRow]="true"
+        [summaryPosition]="'bottom'"
+        [footerHeight]="40"
+        [limit]="10"
+        [rowHeight]="'auto'"
+        [reorderable]="reorderable">
+      </ngx-datatable>  
+
+      <ion-row>
+        <ion-col col-6>
+          <button ion-button class="btn-default"> Voltar </button>
+        </ion-col>
+        <ion-col col-6>
+          <button ion-button class="btn-default"> Remover Filtro </button>
+        </ion-col>
+      </ion-row>
+
+</ion-content>

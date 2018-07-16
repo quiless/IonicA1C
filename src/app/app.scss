@@ -1,12 +1,12 @@
 $loading-md-box-shadow: none !important;   
 $refresher-text-color : #fff !important;    
 $refresher-icon-color : #fff !important;
-ion-content{
+ion-content, ion-grid{
     background-color: #9190ce !important;
     ion-label {
         color: white!important;
     }
-    ion-item{
+    ion-item, ion-grid{
         padding-left: 16px!important;
         padding-right: 16px!important;
         box-shadow: none!important;

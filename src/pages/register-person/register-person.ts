@@ -11,6 +11,12 @@ import { UserInfo } from '../../models/userInfo'
 /* Services */
 import { UserInfoService } from '../../services/userInfoService'
 
+/* Views */
+import { LoginPage } from '../../pages/login/login'
+
+/* External */
+import {BrMaskModel } from 'brmasker-ionic-3';
+
 
 @Component({
   selector: 'page-register-person',
@@ -20,9 +26,12 @@ import { UserInfoService } from '../../services/userInfoService'
 export class RegisterPersonPage {
 
   userInfo = new UserInfo();
+  
 
   constructor(public navCtrl: NavController, 
-              private userInfoService : UserInfoService ) {
+              private userInfoService : UserInfoService,
+              private alertController : AlertController,
+              private loadingController : LoadingController ) {
   }
 
   ionViewDidLoad() {
@@ -30,14 +39,46 @@ export class RegisterPersonPage {
    
   }
 
+   redirectLoginPage(){
+    this.navCtrl.push(LoginPage);
+  } 
+
+
   saveUserInfo (data){
-    console.log(data);
+
+    let blockUi = this.loadingController.create({
+      spinner: 'ios'
+    });
+
+    let alert = this.alertController.create({
+      buttons: ['Ok']
+    });
+
+    blockUi.present();
+
     return this.userInfoService.saveUserInfo(this.userInfo).subscribe(result => {
-      console.log(result);
+      blockUi.dismiss().then(() => {
+        alert.setMessage("Usuário cadastrado com sucesso!");
+        alert.present().then(() => {
+          this.redirectLoginPage();
+        })
+      })
     }, error =>{
-      console.log("erro ->>" + error)
+      blockUi.dismiss().then(() => {
+        let stringMessageError = "";
+
+        JSON.parse(error._body).forEach(function(value){
+          stringMessageError += value + "; <br>";
+        });
+
+        stringMessageError = stringMessageError.split(";").join("; \n")
+        alert.setMessage(stringMessageError);
+        alert.present();
+      });
     });
   }
+
+ 
 
   
 }

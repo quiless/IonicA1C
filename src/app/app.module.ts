@@ -16,13 +16,24 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterPersonPage } from '../pages/register-person/register-person';
 import { HomePage } from '../pages/home/home'
 import { TutorialPage } from '../pages/tutorial/tutorial'
+import { MedicalResultsPage } from '../pages/medical-results/medical-results'
+import { DashboardResultsPage } from '../pages/dashboard-results/dashboard-results'
 
 /* Services */
 import { AuthService } from '../services/authService'
 import { UserInfoService } from '../services/userInfoService'
+import { PatientService } from '../services/patientService'
 
 /* Natives */
 import { IonicStorageModule } from '@ionic/storage';
+
+/* External */
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { BrMaskerModule } from 'brmasker-ionic-3';
+
+/* Components */
+import { DashboardFilterComponent } from '../components/dashboard-filter/dashboard-filter'
+import { ImportPatientComponent } from '../components/import-patient/import-patient'
 
 @NgModule({
   declarations: [
@@ -30,12 +41,18 @@ import { IonicStorageModule } from '@ionic/storage';
     LoginPage,
     HomePage,
     TutorialPage,
-    RegisterPersonPage
+    MedicalResultsPage,
+    RegisterPersonPage,
+    DashboardFilterComponent,
+    ImportPatientComponent,
+    DashboardResultsPage
   ],
   imports: [
     BrowserModule,
+    NgxDatatableModule,
+    BrMaskerModule,
     IonicStorageModule.forRoot(),
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp), 
     HttpModule
   ],
   bootstrap: [IonicApp],
@@ -44,7 +61,11 @@ import { IonicStorageModule } from '@ionic/storage';
     LoginPage,
     HomePage,
     TutorialPage,
-    RegisterPersonPage
+    MedicalResultsPage,
+    RegisterPersonPage,
+    DashboardResultsPage,
+    ImportPatientComponent,
+    DashboardFilterComponent
   ],
   providers: [
     StatusBar,
@@ -52,6 +73,7 @@ import { IonicStorageModule } from '@ionic/storage';
     AuthService,
     Slides,
     UserInfoService,
+    PatientService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
