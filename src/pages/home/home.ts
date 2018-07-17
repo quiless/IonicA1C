@@ -1,6 +1,6 @@
 /* Angular */
 import { Component, ViewChild } from '@angular/core';
-import { NavController, LoadingController, AlertController } from 'ionic-angular';
+import { NavController, LoadingController, AlertController, ModalController } from 'ionic-angular';
 
 /* Views */
 import { TutorialPage } from '../../pages/tutorial/tutorial'
@@ -17,13 +17,15 @@ import { DashboardResultsPage } from '../../pages/dashboard-results/dashboard-re
 
 export class HomePage {
 
-  constructor(public navCtrl: NavController
+  constructor(public navCtrl: NavController,
+              private modalController : ModalController
             ) {
   }
 
   ionViewDidLoad() {
    
   }
+
   
   redirectTutorialPage(){
     this.navCtrl.push(TutorialPage);

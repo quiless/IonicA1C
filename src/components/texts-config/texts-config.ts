@@ -10,18 +10,11 @@ import { NavController,
 
 
 @Component({
-  selector: 'dashboard-filter',
-  templateUrl: 'dashboard-filter.html'
+  selector: 'texts-config',
+  templateUrl: 'texts-config.html'
 })
 
 export class DashboardFilterComponent {
-
-  filterObject = {
-    Key : "",
-    Value : ""
-  }
-
-  filterProperties = ["RG", "Nome", "Email"];
 
 
   constructor(
@@ -33,8 +26,7 @@ export class DashboardFilterComponent {
   }
 
   dismiss(){
-    this.events.publish("filterDashResults", this.filterObject);
-    return this.viewController.dismiss();
+    this.viewController.dismiss();
   }
 
 

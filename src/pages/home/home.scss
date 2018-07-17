@@ -4,7 +4,7 @@ HomePage {
 }
 
 .bg{  
-  background-image: url(../../assets/imgs/main-page-background.png);
+  background-image: url(../assets/imgs/main-page-background.png);
   background-repeat: no-repeat;
   background-size:cover;
 }
@@ -34,13 +34,13 @@ HomePage {
   background-size: contain;
 }
 .home-menu .button .icon.instrucoes{
-  background-image: url(../../assets/imgs/btn-instrucoes-de-uso.png); 
+  background-image: url(../assets/imgs/btn-instrucoes-de-uso.png); 
 }
 .home-menu .button .icon.inserir-resultados{
-  background-image: url(../../assets/imgs/btn-inserir-resultados.png); 
+  background-image: url(../assets/imgs/btn-inserir-resultados.png); 
 }
 .home-menu .button .icon.consultar-resultados{
-  background-image: url(../../assets/imgs/btn-consultar-resultados.png); 
+  background-image: url(../assets/imgs/btn-consultar-resultados.png); 
 }
 
 .home-menu .button .label{

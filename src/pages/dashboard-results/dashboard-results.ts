@@ -1,6 +1,6 @@
 /* Angular */
 import { Component } from '@angular/core';
-import { NavController, LoadingController, AlertController, ModalController } from 'ionic-angular';
+import { NavController, LoadingController, AlertController, ModalController, Events } from 'ionic-angular';
 
 /* Components */
 import { DashboardFilterComponent } from '../../components/dashboard-filter/dashboard-filter'
@@ -42,9 +42,34 @@ export class DashboardResultsPage {
  
     ]
 
+    AuxTeste = [
+      {
+         "Data" : "12/11/2018 14:50",
+         "Nome" : "Jefferson",
+         "RG" : "00.000.000-5"
+      },
+      {
+         "Data" : "15/11/2018 14:50",
+         "Nome" : "Carlos",
+         "RG" : "00.000.000-5"
+      },
+      {
+       "Data" : "12/11/2018 14:50",
+       "Nome" : "Jefferson",
+       "RG" : "00.000.000-5"
+      },
+      {
+       "Data" : "12/11/2018 14:50",
+       "Nome" : "Jefferson",
+       "RG" : "00.000.000-5"
+     }
+
+   ]
+
   constructor(public navCtrl: NavController, 
               private alertController : AlertController,
               private modalController : ModalController,
+              private events : Events,
               private loadingController : LoadingController ) {
 
     this.columns = [
@@ -52,6 +77,30 @@ export class DashboardResultsPage {
       { prop: 'Nome' },
       { prop: 'RG' }
     ];
+
+    events.subscribe("filterDashResults", (filterParam) => {
+      let key = filterParam.Key;
+      let value = filterParam.Value;
+
+      if (key != null || value != null){
+        if (key == "RG"){
+          this.AuxTeste = this.Teste.filter(
+            result => result.RG == value
+          );
+        } else if (key == "Nome"){
+          this.AuxTeste = this.Teste.filter(
+            result => result.Nome == value
+          );
+        } else {
+          this.AuxTeste = this.Teste.filter(
+            result => result.Data == value
+          );
+        }
+        this.updateRowsData();
+      } else {
+        this.clearFilter();
+      }
+    });
   }
 
   showDashboardFilter (){
@@ -64,12 +113,19 @@ export class DashboardResultsPage {
     profileModal.present();
   }
 
-  ionViewDidLoad() {
-    
-    this.rows = this.Teste;
-   
+  clearFilter (){
+    this.AuxTeste = this.Teste;
+    this.updateRowsData();
   }
 
+  ionViewDidLoad() {
+    
+   this.updateRowsData();
+  }
+
+  updateRowsData (){
+    this.rows = this.AuxTeste;
+  }
    
 
   

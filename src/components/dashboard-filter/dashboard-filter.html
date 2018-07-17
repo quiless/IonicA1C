@@ -11,17 +11,20 @@
 
 
   <ion-content>
- 
-    <ion-item>
-      <ion-label color="primary" stacked> Filtrar por : </ion-label>
-      <ion-select>
-          <ion-option> </ion-option>
-        </ion-select>
-    </ion-item>
-    <ion-col>
-        <ion-input type="text"> </ion-input>
+      <ion-col col-12>
+        <ion-item>
+          <ion-label color="primary" stacked> Filtrar por : </ion-label>
+          <ion-select [(ngModel)]="filterObject.Key">
+            <ion-option *ngFor="let property of filterProperties" [value]="property"> {{ property }} </ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      
+    <ion-col col-12>
+      <ion-item>
+        <ion-input type="text" [(ngModel)]="filterObject.Value"> </ion-input>
+      </ion-item>
     </ion-col>
-    
-  
+
     
   </ion-content>
