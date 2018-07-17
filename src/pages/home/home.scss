@@ -1,34 +1,55 @@
-.btn-default {
-  margin-top : 10px !important;
-}
-
-.item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner{
-  border-color: #32db64!important;
-   
-}
-.img-logo{
-    display: block;
-    margin: 60px auto;
-    width: 50%;
-    max-width:300px;
-    max-height: 282px;
-    height: auto;
-}
-
-#buttonsHome button {
-  height:80px!important;
-  margin-top: 2rem !important;
-}
-
-
-#buttonsHome  {
-  font-size: 80px !important;
-}
-
-#buttonsHome .icon {
-  margin-left: 5rem !important;
-}
 
 HomePage {
   font-size: 100px !important;
+}
+
+.bg{  
+  background-image: url(../../assets/imgs/main-page-background.png);
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+
+.home-menu{
+    height: 100%;
+    top: 20%;
+    position: relative;
+}
+
+.home-menu .button{
+    width: 100%;
+    height: 25%;
+    padding-top: 20px;
+}
+
+.home-menu .button .icon{
+  background-repeat: no-repeat;
+  width: 50%;
+  height: 70%;
+  left: 50%;
+  /* margin: 0 auto; */
+  /* margin-left: 40%; */
+  position: relative;
+  margin-left: -25%;
+  background-position: center;
+  background-size: contain;
+}
+.home-menu .button .icon.instrucoes{
+  background-image: url(../../assets/imgs/btn-instrucoes-de-uso.png); 
+}
+.home-menu .button .icon.inserir-resultados{
+  background-image: url(../../assets/imgs/btn-inserir-resultados.png); 
+}
+.home-menu .button .icon.consultar-resultados{
+  background-image: url(../../assets/imgs/btn-consultar-resultados.png); 
+}
+
+.home-menu .button .label{
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-top: 7px;
+}
+
+.home-menu .button .label span{
+  font-weight: 100;
 }

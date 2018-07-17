@@ -31,17 +31,19 @@ export class MedicalResultsPage {
               { "Name" : "Feminino", "Value" : 1}
             ];
 
-
+            resultadoDevice = "0";
+            
   constructor(public navCtrl: NavController,
               private loadingController : LoadingController,
               private alertController : AlertController,
               private patientService : PatientService
 
             ) {
+
+             
   }
 
   ionViewDidLoad() {
-   
   }
   
   redirectHomePage (){

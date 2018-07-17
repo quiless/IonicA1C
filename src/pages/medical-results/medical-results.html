@@ -1,12 +1,37 @@
 
-
-<ion-content>
+<ion-content class="default-bg">
     <ion-slides paginationClickable=false
                 zoom=true
                 pager=true
                 parallax=true
                 #mySlider>
 
+                <ion-slide>
+                    <div id="titleVideo">  Inserir Resultado </div>
+                    <div class="ac1now-device">
+                      <div class="label">{{ resultadoDevice }}</div>
+                    </div>
+                    <ion-item>
+                        <ion-label color="primary" stacked> Resultado </ion-label>
+                        <ion-input type="text" [(ngModel)]="resultadoDevice"></ion-input>
+                      </ion-item>            
+                    <div>
+                      <ion-row>
+                      </ion-row>
+                      <ion-row>
+                        <ion-col col-6>
+                          <button ion-button class="a1c-button" (click)='slidePrev(i)'> 
+                            <ion-icon name="arrow-back"></ion-icon> 
+                            Voltar </button>
+                        </ion-col>
+                        <ion-col col-6>
+                          <button ion-button class="a1c-button" (click)= 'slideNext(i)'> Inserir </button>
+                        </ion-col>
+                      </ion-row>
+                    </div>
+                  </ion-slide>
+
+                  
       <ion-slide>
         <div id="titleVideo">  Inserir Resultado </div>
 
@@ -43,42 +68,20 @@
         </ion-item>
 
         <ion-col col-12>
-            <button ion-button class="btn-default" (click)='getPatientByRG()'> Buscar paciente por RG </button>
+            <button ion-button class="a1c-button" (click)='getPatientByRG()'> Buscar paciente por RG </button>
         </ion-col>
         <ion-row>
           <ion-col col-6>
-            <button ion-button class="btn-default" (click)='savePatient(i)'> Cadastrar </button>
+            <button ion-button class="a1c-button" (click)='savePatient(i)'> Cadastrar </button>
           </ion-col>
           <ion-col col-6>
-            <button ion-button class="btn-default" (click)= 'slideNext(i)'> Pular </button>
+            <button ion-button class="a1c-button" (click)= 'slideNext(i)'> Pular </button>
           </ion-col>
         </ion-row>
       </ion-slide>
 
 
-      <ion-slide>
-        <div id="titleVideo">  Inserir Resultado </div>
-        
-        [FOTOAPARELHOA1C]
-        <ion-item>
-            <ion-label color="primary" stacked> Resultado </ion-label>
-            <ion-input type="email" ></ion-input>
-          </ion-item>
-
-        <div>
-          <ion-row>
-          </ion-row>
-          <ion-row>
-            <ion-col col-6>
-              <button ion-button class="btn-default" (click)='slidePrev(i)'> Voltar </button>
-            </ion-col>
-            <ion-col col-6>
-              <button ion-button class="btn-default" (click)= 'slideNext(i)'> Inserir </button>
-            </ion-col>
-          </ion-row>
-        </div>
-      </ion-slide>
-
+      
 
 
       <ion-slide>
@@ -164,15 +167,18 @@
         <div>
             <ion-row>
               <ion-col col-12>
-                <button ion-button class="btn-default" (click)='slidePrev(i)'> Enviar Resultado SMS/E-mail </button>
+                <button ion-button class="a1c-button" (click)='slidePrev(i)'> Enviar Resultado SMS/E-mail </button>
               </ion-col>
             </ion-row>
           <ion-row>
             <ion-col col-6>
-              <button ion-button class="btn-default" (click)='slidePrev(i)'> Voltar </button>
+              <button ion-button item-end icon-start class="a1c-button" (click)='slidePrev(i)'> 
+                  <ion-icon name="arrow-back"></ion-icon>Voltar 
+                  Voltar 
+              </button>
             </ion-col>
             <ion-col col-6>
-              <button ion-button class="btn-default" (click)= 'slideNext(2)'> Finalizar </button>
+              <button ion-button class="a1c-button" (click)= 'slideNext(2)'> Finalizar </button>
             </ion-col>
           </ion-row>
         </div>

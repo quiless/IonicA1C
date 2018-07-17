@@ -16,8 +16,15 @@ ion-content, ion-grid{
     }
     
 }
+
+@font-face {
+    font-family: 'digital-7';
+    src: url('../assets/fonts/digital-7.ttf');
+    font-style: normal;
+}
+
 .toolbar-background{
-    background-color: #9190ce !important;
+    background-color: #a13c3e !important;
     color:#fff!important;
 }
 .toolbar-title-md,.bar-button-default-md{
@@ -36,3 +43,23 @@ ion-icon {
     font-size: 20px !important; 
 }
 
+.default-bg{
+    background-image: url(../assets/imgs/bg.png);
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+
+
+.a1c-button{
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    border-color: #fff;
+    border-radius: 5px;
+}
+
+/** Correção do BUG do ion-slide **/
+.scroll-content{
+    margin-bottom: 0px !important;
+    padding-bottom: 0px !important;
+}

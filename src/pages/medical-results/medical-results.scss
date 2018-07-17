@@ -43,3 +43,28 @@ input[type=range][orient=vertical]
   border: 1rem !important;
   border-color: black !important;
 }
+
+.ac1now-device{
+  background-image: url(../../assets/imgs/A1CNOW.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 40%;
+  height: 40%;
+  position: relative;
+  left: 50%;
+  margin-left: -20%;
+  background-position: center;
+}
+
+.ac1now-device .label{
+  font-family: 'digital-7';
+  font-size: 1.5em;
+  position: relative;
+  top: 15%;
+  margin: 0 auto;
+  color: #000;
+}
+.slide-zoom{
+  height: 100%;
+  padding-top: 30%;
+}
