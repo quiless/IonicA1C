@@ -32,8 +32,9 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { BrMaskerModule } from 'brmasker-ionic-3';
 
 /* Components */
-import { DashboardFilterComponent } from '../components/dashboard-filter/dashboard-filter'
-import { ImportPatientComponent } from '../components/import-patient/import-patient'
+import { DashboardFilterComponent } from '../components/dashboard-filter/dashboard-filter';
+import { ImportPatientComponent } from '../components/import-patient/import-patient';
+import { TextsConfigComponent } from '../components/texts-config/texts-config'
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { ImportPatientComponent } from '../components/import-patient/import-pati
     RegisterPersonPage,
     DashboardFilterComponent,
     ImportPatientComponent,
+    TextsConfigComponent,
     DashboardResultsPage
   ],
   imports: [
@@ -65,6 +67,7 @@ import { ImportPatientComponent } from '../components/import-patient/import-pati
     RegisterPersonPage,
     DashboardResultsPage,
     ImportPatientComponent,
+    TextsConfigComponent,
     DashboardFilterComponent
   ],
   providers: [

@@ -1,7 +1,7 @@
 <ion-header>
     <ion-navbar>
       <ion-title>
-        Opções de filtro
+        Configurações
       </ion-title>
       <ion-buttons end>
           <button ion-button (click)="dismiss()"> Fechar </button>
@@ -11,17 +11,20 @@
 
 
   <ion-content>
- 
     <ion-item>
-      <ion-label color="primary" stacked> Filtrar por : </ion-label>
-      <ion-select>
-          <ion-option> </ion-option>
-        </ion-select>
+      <ion-label stacked> Frase 1 </ion-label>
+      <ion-textarea 
+        [(ngModel)]=text2
+        rows="5">
+      </ion-textarea>
     </ion-item>
-    <ion-col>
-        <ion-input type="text"> </ion-input>
-    </ion-col>
-    
-  
-    
+
+    <ion-item>
+      <ion-label stacked> Frase 2 </ion-label>
+      <ion-textarea 
+        [(ngModel)]=text3
+        rows="5">
+      </ion-textarea>
+    </ion-item>
+
   </ion-content>

@@ -33,7 +33,7 @@ export class TutorialPage {
   }
 
   ionViewDidLoad() {
-   
+   this.slides.lockSwipes(true);
   }
 
   
@@ -41,7 +41,9 @@ export class TutorialPage {
     if (index == 2){
       this.navCtrl.push(HomePage);
     } else {
+      this.slides.lockSwipes(false);
       this.slides.slideNext();
+      this.slides.lockSwipes(true);
     }
   }
 
@@ -49,7 +51,9 @@ export class TutorialPage {
     if (index == 0){
       this.navCtrl.push(HomePage);
     } else {
+      this.slides.lockSwipes(false);
       this.slides.slidePrev();  
+      this.slides.lockSwipes(true);
     }
   }
 
