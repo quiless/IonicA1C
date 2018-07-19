@@ -18,24 +18,33 @@ export class TutorialPage {
 
   videos =  [
     {
-      "videoUri": "https://media.giphy.com/media/kKefeMw8rbMVq/giphy.mp4"
+      "videoUri": "../../assets/videos/COleta1_18.mp4",
+      "ended":false
     },
     {
-      "videoUri": "https://media.giphy.com/media/kKefeMw8rbMVq/giphy.mp4"
+      "videoUri": "../../assets/videos/Coleta2_18.mp4",
+      "ended":false
     },
     {
-      "videoUri": "https://media.giphy.com/media/kKefeMw8rbMVq/giphy.mp4"
+      "videoUri": "../../assets/videos/Coleta3_18.mp4",
+      "ended":false
     }
   ]
 
   constructor(public navCtrl: NavController
             ) {
+
+             
   }
 
   ionViewDidLoad() {
    
   }
 
+  endedVideo(index){
+    console.log("The video has just ended!");
+    this.videos[index].ended=true;
+  }
   
   slideNext(index){
     if (index == 2){

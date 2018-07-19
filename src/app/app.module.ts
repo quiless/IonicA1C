@@ -34,6 +34,7 @@ import { BrMaskerModule } from 'brmasker-ionic-3';
 /* Components */
 import { DashboardFilterComponent } from '../components/dashboard-filter/dashboard-filter'
 import { ImportPatientComponent } from '../components/import-patient/import-patient'
+import { SplashPage } from '../pages/splash/splash';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { ImportPatientComponent } from '../components/import-patient/import-pati
     RegisterPersonPage,
     DashboardFilterComponent,
     ImportPatientComponent,
-    DashboardResultsPage
+    DashboardResultsPage,
+    SplashPage
   ],
   imports: [
     BrowserModule,
@@ -65,7 +67,8 @@ import { ImportPatientComponent } from '../components/import-patient/import-pati
     RegisterPersonPage,
     DashboardResultsPage,
     ImportPatientComponent,
-    DashboardFilterComponent
+    DashboardFilterComponent,
+    SplashPage
   ],
   providers: [
     StatusBar,

@@ -1,36 +1,37 @@
 
-<ion-content class="default-bg">
+<ion-content padding class="default-bg">
     <ion-slides paginationClickable=false
                 zoom=true
                 pager=true
                 parallax=true
                 #mySlider>
 
-                <ion-slide>
-                    <div id="titleVideo">  Inserir Resultado </div>
-                    <div class="ac1now-device">
-                      <div class="label">{{ resultadoDevice }}</div>
-                    </div>
-                    <ion-item>
-                        <ion-label color="primary" stacked> Resultado </ion-label>
-                        <ion-input type="text" [(ngModel)]="resultadoDevice"></ion-input>
-                      </ion-item>            
-                    <div>
-                      <ion-row>
-                      </ion-row>
-                      <ion-row>
-                        <ion-col col-6>
-                          <button ion-button class="a1c-button" (click)='slidePrev(i)'> 
-                            <ion-icon name="arrow-back"></ion-icon> 
-                            Voltar </button>
-                        </ion-col>
-                        <ion-col col-6>
-                          <button ion-button class="a1c-button" (click)= 'slideNext(i)'> Inserir </button>
-                        </ion-col>
-                      </ion-row>
-                    </div>
-                  </ion-slide>
-
+               
+      <ion-slide>
+          <div style="margin-top: 30%;">  Inserir Resultado </div>
+          <div class="ac1now-device">
+            <div class="label">{{ resultadoDevice }}</div>
+          </div>
+          <ion-item>
+              <ion-label color="primary" stacked> Resultado </ion-label>
+              <ion-input type="text" [(ngModel)]="resultadoDevice"></ion-input>
+            </ion-item>            
+          <div>
+            <ion-row>
+            </ion-row>
+            <ion-row>
+              <ion-col col-6>
+                  <button ion-button item-end icon-start class="a1c-button" (click)='slidePrev(i)'> 
+                      <ion-icon name="arrow-back"></ion-icon>Voltar 
+                  </button>                            
+              </ion-col>
+              <ion-col col-6>
+                <button ion-button class="a1c-button" (click)= 'slideNext(i)'> Inserir </button>
+              </ion-col>
+            </ion-row>
+          </div>
+        </ion-slide>
+                
                   
       <ion-slide>
         <div id="titleVideo">  Inserir Resultado </div>
@@ -81,108 +82,113 @@
       </ion-slide>
 
 
-      
 
-
-      <ion-slide>
-        <div id="titleVideo">  Mini Laudo </div>
-        
-      <!--   <ion-col col-12>
-          
-          <ion-row>
-            <b>Resultado : 13 %</b>
-          </ion-row>
-          <ion-row>
-            Resul. Calc : 122
-          </ion-row>
-        </ion-col>
-
-        <ion-col col-12>
-          <ion-col col-4>
-              [GráficoDoLaudo]
-            </ion-col>
-            <ion-col col-8>
-              <ion-row> 12/12/2018 </ion-row>
-              <ion-row> Pré-Texto </ion-row> 
-              <ion-row>
-                Repetir em (Envio SMS)
-              </ion-row>
-              <ion-row>
-                  30 Dias
-              </ion-row> 
-              <ion-row>
-                  60 Dias
-              </ion-row>
-              <ion-row>
-                  90 Dias
-              </ion-row> 
-            </ion-col>
-          </ion-col> -->
-
-              <ion-grid>
-                <ion-row>
-                <ion-col width-20><b>Resultado: 13%</b></ion-col>
-                  <ion-col width-80>
-                      <ion-row>
+        <ion-slide>         
                         
-                      </ion-row>
-                  </ion-col>
-                </ion-row>
-                <ion-row>
-                  <ion-col width-20>Result.Calc : 203</ion-col>
-                  <ion-col width-80>
-                      <ion-row>
-                      </ion-row>
-                  </ion-col>
-                </ion-row>
-                <ion-row>
-                  <ion-col col-2>
-                    <input type="range" name="volume" orient="vertical">
-                  </ion-col>
-                  <ion-col col-4>
-                      <div class="rangeGraph">
-                        <div class="red rangeBlock"></div>
-                        <div class="yellow rangeBlock"></div>
-                        <div class="green rangeBlock"></div>
+            <ion-grid>
+              <ion-row>
+                <ion-col col-12>
+                    <div class="opaque-box">
+                        <h3>Informações do paciente</h3>
+                        <p><span>Nome:</span> Kelvin Cleto Gonçalves</p>
+                        <p><span>E-mail:</span> kcleto@gclaims.com.br</p>
+                        <p><span>Telefone:</span> +55 11 9 96778823</p>
+                    </div>
+                </ion-col>
+              </ion-row>
+            
+              <ion-row>
+                <ion-col col-4>
+                    <div class="rangeGraph">
+                      <div class="red rangeBlock">                                                                        
+                          <div class="max">8.0% a<br> 13%</div>
                       </div>
+                      <div class="yellow rangeBlock">                                      
+                          <div class="max">6.5%</div>
+                      </div>
+                      <div class="green rangeBlock">
+                        <div class="max">5.7%</div>
+                        <div class="min">4.0%</div>
+                      </div>
+                      <div class="pointer">                                        
+                          <span><ion-icon ios="ios-arrow-round-back" md="md-arrow-round-back"></ion-icon> &nbsp; A1C:5.3%</span>
+                          <!--<div>Glicose Estimada</div>
+                          <div>Média: 105.41mg/dl</div>-->
+                      </div>
+                    </div>
+                </ion-col>
+                
+              </ion-row>
+              <ion-row>
+                  <ion-col col-8>
+                      <div style="float: left;margin-left: 30px;">
+                          <div class="legenda-item">
+                            <span style="background-color: red"></span>Diabetes
+                          </div>
+                          <div class="legenda-item">
+                            <span style="background-color: yellow"></span>Pré-Diabetes
+                          </div>
+                          <div class="legenda-item">
+                            <span style="background-color: green"></span>Normal
+                          </div>
+                        </div>
                   </ion-col>
-                  <ion-col col-6>
-                      <ion-row>
-                        12/12/2018 12:32 - Texto Pré-definido
-                      </ion-row>
-                      <ion-row>
-                        <ion-item>
-                          <ion-label stacked> Repetir em (Envio Sms) </ion-label>
-                          <ion-select>
-                            <ion-option> </ion-option>
+              </ion-row>
+              <ion-row>
+                  <ion-col col-12>
+                      <ion-item>
+                        <ion-label>Glicose Estimada média</ion-label>
+                        <ion-input type="text" value="105.41mg/dl" [readonly]="true"></ion-input>
+                      </ion-item>
+                      <ion-item>
+                          <ion-label>Repetir em</ion-label>
+                          <ion-select [(ngModel)]="gaming">
+                              <ion-option value="0">Não repetir</ion-option>
+                            <ion-option value="30">30 dias</ion-option>
+                            <ion-option value="60">60 dias</ion-option>
+                            <ion-option value="90">90 dias</ion-option>
                           </ion-select>
                         </ion-item>
-                      </ion-row>
+                        
+                  </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-12>
+                    <button ion-button class="a1c-button" full>Enviar Resultado SMS/E-mail</button>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                  <ion-col col-6>
+                      <button ion-button item-end icon-start full class="a1c-button" (click)='slidePrev(i)'> 
+                          <ion-icon name="arrow-back"></ion-icon>Voltar 
+                      </button>
+                  </ion-col>
+                  <ion-col col-6>
+                      <button ion-button class="a1c-button" full>Finalizar</button>
                   </ion-col>
                 </ion-row>
-            
-              </ion-grid>
-          
+            </ion-grid>
+        
 
-        <div>
-            <ion-row>
-              <ion-col col-12>
-                <button ion-button class="a1c-button" (click)='slidePrev(i)'> Enviar Resultado SMS/E-mail </button>
-              </ion-col>
-            </ion-row>
-          <ion-row>
-            <ion-col col-6>
-              <button ion-button item-end icon-start class="a1c-button" (click)='slidePrev(i)'> 
-                  <ion-icon name="arrow-back"></ion-icon>Voltar 
-                  Voltar 
-              </button>
-            </ion-col>
-            <ion-col col-6>
-              <button ion-button class="a1c-button" (click)= 'slideNext(2)'> Finalizar </button>
-            </ion-col>
-          </ion-row>
-        </div>
-      </ion-slide> 
+            <!--- <div>
+                  <ion-row>
+                    <ion-col col-12>
+                      <button ion-button class="a1c-button" (click)='slidePrev(i)'> Enviar Resultado SMS/E-mail </button>
+                    </ion-col>
+                  </ion-row>
+                <ion-row>
+                  <ion-col col-6>
+                    <button ion-button item-end icon-start class="a1c-button" (click)='slidePrev(i)'> 
+                        <ion-icon name="arrow-back"></ion-icon>Voltar
+                    </button>
+                  </ion-col>
+                  <ion-col col-6>
+                    <button ion-button class="a1c-button" (click)= 'slideNext(2)'> Finalizar </button>
+                  </ion-col>
+                </ion-row>
+              </div>-->
+    </ion-slide> 
+      
 
 
     </ion-slides>
