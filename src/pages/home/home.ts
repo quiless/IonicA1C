@@ -7,6 +7,8 @@ import { TutorialPage } from '../../pages/tutorial/tutorial'
 import { MedicalResultsPage } from '../../pages/medical-results/medical-results'
 import { DashboardResultsPage } from '../../pages/dashboard-results/dashboard-results'
 
+/* Components */ 
+import { TextsConfigComponent } from '../../components/texts-config/texts-config'
 
 @Component({
   selector: 'page-login',
@@ -19,11 +21,17 @@ export class HomePage {
 
   constructor(public navCtrl: NavController,
               private modalController : ModalController
+              
             ) {
   }
 
   ionViewDidLoad() {
    
+  }
+
+  showTextsConfigModal(){
+    let profileModal = this.modalController.create(TextsConfigComponent);
+    profileModal.present();
   }
 
   
