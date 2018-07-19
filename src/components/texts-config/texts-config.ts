@@ -40,6 +40,10 @@ export class TextsConfigComponent {
     })
   }
 
+  cancel(){
+    this.viewController.dismiss();
+  }
+
 
 
   

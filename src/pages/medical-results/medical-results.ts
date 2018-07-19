@@ -44,6 +44,7 @@ export class MedicalResultsPage {
   }
 
   ionViewDidLoad() {
+    this.slides.lockSwipes(true);
   }
   
   redirectHomePage (){
@@ -87,7 +88,9 @@ export class MedicalResultsPage {
     if (index == 2) {
       this.redirectHomePage();
     } else {
+      this.slides.lockSwipes(false);
       this.slides.slideNext();
+      this.slides.lockSwipes(true);
     }
   }
 
@@ -95,7 +98,9 @@ export class MedicalResultsPage {
     if (index == 1){
       this.patient = new Patient();
     } else {
+      this.slides.lockSwipes(false);
       this.slides.slidePrev();
+      this.slides.lockSwipes(true);
     }  
   }
 
