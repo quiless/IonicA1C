@@ -99,7 +99,7 @@ input[type=range][orient=vertical]
   background-size: contain;
   width: 40%;
   height: 40%;
-  min-height: 200px;
+  max-height: 400px;
   position: relative;
   left: 50%;
   margin-left: -20%;
@@ -119,6 +119,30 @@ input[type=range][orient=vertical]
   height: 100%;
   padding-top: 17%;
 }
+
+@media(max-height:483px){
+  .ac1now-device .label{
+    font-size: 22px !important;
+  }  
+}
+@media(max-height:400px){
+  .ac1now-device .label{
+    font-size: 18px !important;
+  }  
+}
+
+@media(max-height:328px){
+  .ac1now-device .label{
+    font-size: 15px !important;
+  }  
+}
+
+@media(max-height:280){
+  .ac1now-device .label{
+    display: none !important;
+  }  
+}
+
 
 .opaque-box{
     background-color: rgba(0, 0, 0, 0.45);

@@ -49,6 +49,10 @@ ion-icon {
     background-size:cover;
 }
 
+.default-bg.bg-darken{
+    background-blend-mode: darken;
+    background-color: rgba(0,0,0,0.4) !important;
+}
 
 .a1c-button{
     background-color: transparent;

@@ -1,30 +1,24 @@
-<ion-header>
-    <ion-navbar>
-      <ion-title>
-        Configurações
-      </ion-title>
-      <ion-buttons end>
-          <button ion-button (click)="dismiss()"> Fechar </button>
-      </ion-buttons>
-    </ion-navbar>
-  </ion-header>
 
 
-  <ion-content>
-    <ion-item>
-      <ion-label stacked> Frase 1 </ion-label>
-      <ion-textarea 
-        [(ngModel)]=text2
-        rows="5">
-      </ion-textarea>
-    </ion-item>
 
-    <ion-item>
-      <ion-label stacked> Frase 2 </ion-label>
-      <ion-textarea 
-        [(ngModel)]=text3
-        rows="5">
-      </ion-textarea>
-    </ion-item>
-
+  <ion-content class="default-bg bg-darken" >
+    <div style="margin-top: 30%;">
+        <ion-item>
+            <ion-label stacked> Frase padrão 1</ion-label>
+            <ion-textarea 
+              [(ngModel)]=text2
+              rows="5">
+            </ion-textarea>
+          </ion-item>
+      
+          <ion-item>
+            <ion-label stacked> Frase padrão 2 </ion-label>
+            <ion-textarea 
+              [(ngModel)]=text3
+              rows="5">
+            </ion-textarea>
+          </ion-item>
+      
+    </div>
+    
   </ion-content>
