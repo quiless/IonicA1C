@@ -32,15 +32,10 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { BrMaskerModule } from 'brmasker-ionic-3';
 
 /* Components */
-<<<<<<< HEAD
 import { DashboardFilterComponent } from '../components/dashboard-filter/dashboard-filter'
 import { ImportPatientComponent } from '../components/import-patient/import-patient'
 import { SplashPage } from '../pages/splash/splash';
-=======
-import { DashboardFilterComponent } from '../components/dashboard-filter/dashboard-filter';
-import { ImportPatientComponent } from '../components/import-patient/import-patient';
-import { TextsConfigComponent } from '../components/texts-config/texts-config'
->>>>>>> 1628a3b50359a43491805592dd71f033c9140762
+import { TextsConfigComponent } from '../components/texts-config/texts-config';
 
 @NgModule({
   declarations: [
@@ -52,13 +47,9 @@ import { TextsConfigComponent } from '../components/texts-config/texts-config'
     RegisterPersonPage,
     DashboardFilterComponent,
     ImportPatientComponent,
-<<<<<<< HEAD
     DashboardResultsPage,
-    SplashPage
-=======
     TextsConfigComponent,
-    DashboardResultsPage
->>>>>>> 1628a3b50359a43491805592dd71f033c9140762
+    SplashPage
   ],
   imports: [
     BrowserModule,
@@ -78,13 +69,9 @@ import { TextsConfigComponent } from '../components/texts-config/texts-config'
     RegisterPersonPage,
     DashboardResultsPage,
     ImportPatientComponent,
-<<<<<<< HEAD
     DashboardFilterComponent,
-    SplashPage
-=======
     TextsConfigComponent,
-    DashboardFilterComponent
->>>>>>> 1628a3b50359a43491805592dd71f033c9140762
+    SplashPage
   ],
   providers: [
     StatusBar,
