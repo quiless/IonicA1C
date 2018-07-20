@@ -53,7 +53,9 @@ import { TextsConfigComponent } from '../components/texts-config/texts-config';
     SplashPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp,{
+      preloadModules: true
+    }),
     BrowserModule,
     NgxDatatableModule,
     BrMaskerModule,
