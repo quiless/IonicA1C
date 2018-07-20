@@ -10,21 +10,32 @@
   </ion-header>
 
 
-  <ion-content>
-      <ion-col col-12>
-        <ion-item>
-          <ion-label color="primary" stacked> Filtrar por : </ion-label>
-          <ion-select [(ngModel)]="filterObject.Key">
-            <ion-option *ngFor="let property of filterProperties" [value]="property"> {{ property }} </ion-option>
-          </ion-select>
-        </ion-item>
-      </ion-col>
+  <ion-content class="bg-sem-branco">
+    <ion-row>
+        <ion-col col-12>
+            <ion-item>
+              <ion-label color="primary" stacked> Filtrar por : </ion-label>
+              <ion-select [(ngModel)]="filterObject.Key">
+                <ion-option *ngFor="let property of filterProperties" [value]="property"> {{ property }} </ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+    </ion-row>
+    
       
-    <ion-col col-12>
-      <ion-item>
-        <ion-input type="text" [(ngModel)]="filterObject.Value"> </ion-input>
-      </ion-item>
-    </ion-col>
+      <ion-row>
+          <ion-col col-12>
+              <ion-item>
+                <ion-input type="text" [(ngModel)]="filterObject.Value"> </ion-input>
+              </ion-item>
+            </ion-col>
+      </ion-row>
+    
 
+    <ion-row>
+      <ion-col col-12>
+          <button ion-button class="a1c-button" (click)='filter()' full>Aplicar Filtro</button>
+      </ion-col>
+    </ion-row>
     
   </ion-content>
