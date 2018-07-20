@@ -72,6 +72,7 @@ export class LoginPage {
       return this.authService.authenticate(this.login).subscribe( data => {
         let response = (JSON.parse(data["_body"]));
         this.storage.set("access_token", response.access_token);
+        console.log(response.access_token);
         this.storage.set("userLogin", this.login);
         this.getInformationsUserLogged().subscribe(result => {
           let response = (JSON.parse(result["_body"]));

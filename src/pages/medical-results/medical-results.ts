@@ -9,10 +9,17 @@ import {HomePage} from '../home/home'
 
 /* Models */
 import { Patient } from '../../models/patient'
+import { MedicalResult } from '../../models/medicalResult'
+import { UserInfo } from '../../models/userInfo'
 
 /* Services */
 import { PatientService } from '../../services/patientService'
+import { MedicalResultService } from '../../services/medicalResultService'
 
+
+
+/* Native */
+import { Storage } from '@ionic/storage';
 
 
 @Component({
@@ -23,27 +30,36 @@ import { PatientService } from '../../services/patientService'
 export class MedicalResultsPage {
 
   patient = new Patient();
-
+  medicalResult = new MedicalResult();
+  
   @ViewChild(Slides) slides: Slides;
 
-  Genders = [
-              { "Name" : "Masculino", "Value" : 0}, 
-              { "Name" : "Feminino", "Value" : 1}
-            ];
+  genders = [
+    { "Name" : "Masculino", "Value" : 0}, 
+    { "Name" : "Feminino", "Value" : 1}
+  ];
 
-            resultadoDevice = "0";
+  repeatDays = [
+    { "Name" : "Não repetir", "Value" : "0"},
+    { "Name" : "30 dias", "Value" : 30}, 
+    { "Name" : "60 dias", "Value" : 60}, 
+    { "Name" : "90 dias", "Value" : 90}, 
+  ];
+
+  resultadoDevice = 0;
             
   constructor(public navCtrl: NavController,
               private loadingController : LoadingController,
               private alertController : AlertController,
-              private patientService : PatientService
+              private medicalResultService : MedicalResultService,
+              private patientService : PatientService,
+              private storage : Storage
 
             ) {
-
-             
   }
 
   ionViewDidLoad() {
+    this.slides.lockSwipes(true);
   }
   
   redirectHomePage (){
@@ -84,10 +100,20 @@ export class MedicalResultsPage {
   }
   
   slideNext(index){
+    console.log(index);
+    console.log(this.resultadoDevice);
     if (index == 2) {
       this.redirectHomePage();
-    } else {
+    } else if (index == 1 && (this.resultadoDevice < 4 || this.resultadoDevice > 13)){
+      let alert = this.alertController.create({
+        buttons: ['Ok']
+      });
+      alert.setMessage("O resultado não pode ser menor do que 4% ou maior que 13 %");
+      return alert.present();
+  } else {
+      this.slides.lockSwipes(false);
       this.slides.slideNext();
+      this.slides.lockSwipes(true);
     }
   }
 
@@ -95,8 +121,37 @@ export class MedicalResultsPage {
     if (index == 1){
       this.patient = new Patient();
     } else {
+      this.slides.lockSwipes(false);
       this.slides.slidePrev();
+      this.slides.lockSwipes(true);
     }  
+  }
+
+  advanceUserIsPatient(){
+    this.storage.get("userInfoLogged").then((result) => {
+      this.patient.Name = result.Name;
+      this.patient.Id = result.Patient.Id;
+      this.patient.Email = result.Email;
+      this.patient.RG = result.RG
+      this.patient.PhoneNumber = result.PhoneNumber;
+    }).then(() => {
+      this.slideNext(0);
+    })
+  }
+
+  advanceSlide(){
+
+    let alert = this.alertController.create({
+      buttons: ['Ok']
+    });
+
+
+    if (this.patient.Name == null || this.patient.Email == null || this.patient.PhoneNumber == null){
+      alert.setMessage("Não é possível avançar sem os dados do paciente.");
+      alert.present();
+    } else {
+      this.slideNext(0);
+    }
   }
 
   getPatientByRG(){
@@ -152,5 +207,45 @@ export class MedicalResultsPage {
       });
     }
 
+  }
+
+
+  saveMedicalResult(){
+    this.medicalResult.PatientId = this.patient.Id;
+    this.medicalResult.PercentGlycogen = 5.3;
+    this.medicalResult.MediumGlycogen = 105.3;
+
+    let blockUi = this.loadingController.create({
+      spinner: 'ios'
+    });
+
+    let alert = this.alertController.create({
+      buttons: ['Ok']
+    });
+
+    blockUi.present();
+
+    return this.medicalResultService.saveMedicalResult(this.medicalResult).subscribe(result => {
+      blockUi.dismiss().then(() => {
+        var response = JSON.parse(result["_body"]);
+        console.log(response);
+        alert.setMessage("Resultado cadastrado com sucesso!")
+        alert.present().then(() => {
+          this.redirectHomePage();
+        });
+      });
+    }, error =>{
+      blockUi.dismiss().then(() => {
+        let stringMessageError = "";
+
+        JSON.parse(error._body).forEach(function(value){
+          stringMessageError += value + "; <br>";
+        });
+
+        stringMessageError = stringMessageError.split(";").join("; \n")
+        alert.setMessage(stringMessageError);
+        alert.present();
+      });
+    });
   }
 }

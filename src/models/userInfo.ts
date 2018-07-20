@@ -1,6 +1,9 @@
 /* Angular */
 import { DateTime } from "ionic-angular";
 
+/* Models */ 
+import { Patient } from "../models/patient"
+
 export class UserInfo {
     Id : number;
     Name : string;
@@ -12,4 +15,5 @@ export class UserInfo {
 	IsDeleted :	boolean;
     UpdateDate : DateTime;
     Token : string;
+    Patient : Patient;
 }

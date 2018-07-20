@@ -87,6 +87,10 @@ O valor de Hemoglobina Glicada reportada acima é uma transcrição do valor obt
       });  
   }
 
+  cancel(){
+    this.viewController.dismiss();
+  }
+
 
 
   
