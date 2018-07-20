@@ -10,7 +10,7 @@ import { Storage } from '@ionic/storage';
 
 
 @Injectable()
-export class PatientService {
+export class MedicalResultService {
 
     header = new Headers();
     options = new RequestOptions();
@@ -32,18 +32,23 @@ export class PatientService {
 
     getToken(){
         this.storage.get("access_token").then((result) => {
+            
             this.token = result;
         });
     }
-
-    savePatient(patient){
+    
+    saveMedicalResult(medicalResult){
         this.options.headers.append('Authorization', 'Bearer ' + this.token);
-        return this.http.post(this.url + "Core/SavePatient", patient, this.options );
+        var x = this.http.post(this.url + "Core/SaveMedicalResult", medicalResult, this.options );
+  
+        return x;
+
     }
 
-    getPatientByRG(RG){
+    getMedicalResults(){
         this.options.headers.append('Authorization', 'Bearer ' + this.token);
-        return this.http.post(this.url + "Core/GetPatientByRG", JSON.stringify(RG), this.options );
+        return this.http.post(this.url + "Core/GetMedicalResults", {}, this.options);
     }
 
+  
 }

@@ -23,6 +23,7 @@ import { DashboardResultsPage } from '../pages/dashboard-results/dashboard-resul
 import { AuthService } from '../services/authService'
 import { UserInfoService } from '../services/userInfoService'
 import { PatientService } from '../services/patientService'
+import { MedicalResultService } from '../services/medicalResultService'
 
 /* Natives */
 import { IonicStorageModule } from '@ionic/storage';
@@ -79,6 +80,7 @@ import { TextsConfigComponent } from '../components/texts-config/texts-config';
     AuthService,
     Slides,
     UserInfoService,
+    MedicalResultService,
     PatientService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

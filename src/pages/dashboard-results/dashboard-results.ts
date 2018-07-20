@@ -6,6 +6,9 @@ import { NavController, LoadingController, AlertController, ModalController, Eve
 import { DashboardFilterComponent } from '../../components/dashboard-filter/dashboard-filter'
 import { ImportPatientComponent } from '../../components/import-patient/import-patient'
 
+/* Services */
+import { MedicalResultService } from '../../services/medicalResultService'
+
 
 @Component({
   selector: 'page-dashboard-results',
@@ -16,6 +19,10 @@ export class DashboardResultsPage {
 
   public columns : any;
   public rows : any;
+  
+  MedicalResults = [];
+  AuxMedicalResults = [];
+   
 
 
    Teste = [
@@ -70,6 +77,7 @@ export class DashboardResultsPage {
               private alertController : AlertController,
               private modalController : ModalController,
               private events : Events,
+              public medicalResultService : MedicalResultService,
               private loadingController : LoadingController ) {
 
     this.columns = [
@@ -121,10 +129,25 @@ export class DashboardResultsPage {
   ionViewDidLoad() {
     
    this.updateRowsData();
+
+   setTimeout(() => {
+    this.getMedicalResults();
+   }, 500);
+
+
+   
   }
 
   updateRowsData (){
     this.rows = this.AuxTeste;
+  }
+
+  getMedicalResults (){
+      return this.medicalResultService.getMedicalResults().subscribe(result => {
+        var response = JSON.parse(result["_body"]);
+        console.log(response);
+    })
+   
   }
    
 
