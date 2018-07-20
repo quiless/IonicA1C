@@ -18,15 +18,15 @@ export class TutorialPage {
 
   videos =  [
     {
-      "videoUri": "../../assets/videos/COleta1_18.mp4",
+      "videoUri": "assets/videos/COleta1_18.mp4",
       "ended":false
     },
     {
-      "videoUri": "../../assets/videos/Coleta2_18.mp4",
+      "videoUri": "assets/videos/Coleta2_18.mp4",
       "ended":false
     },
     {
-      "videoUri": "../../assets/videos/Coleta3_18.mp4",
+      "videoUri": "assets/videos/Coleta3_18.mp4",
       "ended":false
     }
   ]

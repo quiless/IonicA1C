@@ -8,7 +8,7 @@
 
       <ion-slide *ngFor="let item of videos; let i = index">
           <div id="titleVideo">  Instruções - Passo {{ (i+1) }} </div>
-          <video  [autoplay]="true" style="width: 100%;" (ended)="endedVideo(i)"
+          <video  [autoplay]="true" preload="metadata" webkit-playsinline="webkit-playsinline"  style="width: 100%;" (ended)="endedVideo(i)"
             [(src)]="item.videoUri">      
           </video>
 
@@ -22,7 +22,7 @@
           </ion-col>
 
           <ion-col col-6>
-            <button ion-button icon-end class="a1c-button" (click)= 'slideNext(i)' *ngIf="item.ended">               
+            <button ion-button icon-end class="a1c-button" (click)= 'slideNext(i)'>               
               {{ i == 2 ? 'Finalizar' : 'Próximo'}} 
               <ion-icon name="arrow-forward" *ngIf="i != 2"></ion-icon>
             </button>

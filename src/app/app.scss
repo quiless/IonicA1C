@@ -42,6 +42,11 @@ ion-content, ion-grid{
 ion-icon {
     font-size: 20px !important; 
 }
+.bg-sem-branco{
+    background-image: url('../assets/imgs/bg-sem-branco.png');
+    background-repeat: no-repeat;
+    background-size:cover;
+}
 
 .default-bg{
     background-image: url('../assets/imgs/bg.png');

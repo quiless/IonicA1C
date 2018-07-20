@@ -52,11 +52,11 @@ import { TextsConfigComponent } from '../components/texts-config/texts-config';
     SplashPage
   ],
   imports: [
+    IonicModule.forRoot(MyApp),
     BrowserModule,
     NgxDatatableModule,
     BrMaskerModule,
     IonicStorageModule.forRoot(),
-    IonicModule.forRoot(MyApp), 
     HttpModule
   ],
   bootstrap: [IonicApp],
@@ -84,3 +84,4 @@ import { TextsConfigComponent } from '../components/texts-config/texts-config';
   ]
 })
 export class AppModule {}
+

@@ -1,6 +1,6 @@
 /* Angular */
 import { Component } from '@angular/core';
-import { NavController, LoadingController, AlertController, ModalController, Events } from 'ionic-angular';
+import { NavController, LoadingController, AlertController, ModalController, Events, ActionSheetController } from 'ionic-angular';
 
 /* Components */
 import { DashboardFilterComponent } from '../../components/dashboard-filter/dashboard-filter'
@@ -70,6 +70,7 @@ export class DashboardResultsPage {
               private alertController : AlertController,
               private modalController : ModalController,
               private events : Events,
+              public actionSheetCtrl: ActionSheetController,
               private loadingController : LoadingController ) {
 
     this.columns = [
@@ -102,6 +103,41 @@ export class DashboardResultsPage {
       }
     });
   }
+
+  presentActionSheet() {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Ações do Resultado',
+      buttons: [      
+        {
+          text: 'Importar paciente',
+          handler: () => {
+            console.log('Archive clicked');
+          }
+        },
+        {
+          text: 'Filtrar dados',
+          handler: () => {
+            console.log('Archive clicked');
+          }
+        },
+        {
+          text: 'Limpar Filtro',
+          handler: () => {
+            console.log('Archive clicked');
+          }
+        },
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+ 
+    actionSheet.present();
+  };
 
   showDashboardFilter (){
     let profileModal = this.modalController.create(DashboardFilterComponent);

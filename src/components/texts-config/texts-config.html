@@ -1,24 +1,44 @@
 
-
-
-  <ion-content class="default-bg bg-darken" >
-    <div style="margin-top: 30%;">
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+        Configuração de textos
+        </ion-title>
+    </ion-navbar>
+</ion-header>   
+  <ion-content class="bg-sem-branco" >
+    <div style="margin-top: 10%;">
         <ion-item>
-            <ion-label stacked> Frase padrão 1</ion-label>
+            <ion-label stacked> Primeiro Texto</ion-label>
             <ion-textarea 
-              [(ngModel)]=text2
+              [(ngModel)]=text1
               rows="5">
             </ion-textarea>
           </ion-item>
       
           <ion-item>
-            <ion-label stacked> Frase padrão 2 </ion-label>
+            <ion-label stacked> Texto se tiver Followup  </ion-label>
             <ion-textarea 
-              [(ngModel)]=text3
+              [(ngModel)]=text2
               rows="5">
             </ion-textarea>
           </ion-item>
-      
-    </div>
+          <ion-item>
+              <ion-label stacked> Segundo Texto </ion-label>
+              <ion-textarea 
+                [(ngModel)]=text3
+                rows="5">
+              </ion-textarea>
+            </ion-item>
+        
+      </div>
+      <ion-row>
+        <ion-col col-6>
+            <button ion-button class="a1c-button" (click)='reset()' full>Restaurar</button>
+        </ion-col>
+        <ion-col col-6>
+            <button ion-button class="a1c-button" (click)='save()'  full>Salvar alterações</button>
+        </ion-col>
+      </ion-row>
     
   </ion-content>
