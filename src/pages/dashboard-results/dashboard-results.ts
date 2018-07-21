@@ -9,6 +9,9 @@ import { ImportPatientComponent } from '../../components/import-patient/import-p
 /* Services */
 import { MedicalResultService } from '../../services/medicalResultService'
 
+/* Viwes */
+import { MedicalResultsPage } from '../../pages/medical-results/medical-results'
+
 
 @Component({
   selector: 'page-dashboard-results',
@@ -24,55 +27,6 @@ export class DashboardResultsPage {
   AuxMedicalResults = [];
    
 
-
-   Teste = [
-       {
-          "Data" : "12/11/2018 14:50",
-          "Nome" : "Jefferson",
-          "RG" : "00.000.000-5"
-       },
-       {
-          "Data" : "15/11/2018 14:50",
-          "Nome" : "Carlos",
-          "RG" : "00.000.000-5"
-       },
-       {
-        "Data" : "12/11/2018 14:50",
-        "Nome" : "Jefferson",
-        "RG" : "00.000.000-5"
-       },
-       {
-        "Data" : "12/11/2018 14:50",
-        "Nome" : "Jefferson",
-        "RG" : "00.000.000-5"
-      }
- 
-    ]
-
-    AuxTeste = [
-      {
-         "Data" : "12/11/2018 14:50",
-         "Nome" : "Jefferson",
-         "RG" : "00.000.000-5"
-      },
-      {
-         "Data" : "15/11/2018 14:50",
-         "Nome" : "Carlos",
-         "RG" : "00.000.000-5"
-      },
-      {
-       "Data" : "12/11/2018 14:50",
-       "Nome" : "Jefferson",
-       "RG" : "00.000.000-5"
-      },
-      {
-       "Data" : "12/11/2018 14:50",
-       "Nome" : "Jefferson",
-       "RG" : "00.000.000-5"
-     }
-
-   ]
-
   constructor(public navCtrl: NavController, 
               private alertController : AlertController,
               private modalController : ModalController,
@@ -81,31 +35,25 @@ export class DashboardResultsPage {
               public medicalResultService : MedicalResultService,
               private loadingController : LoadingController ) {
 
-    this.columns = [
-      { prop: 'Data' },
-      { prop: 'Nome' },
-      { prop: 'RG' }
-    ];
 
     events.subscribe("filterDashResults", (filterParam) => {
       let key = filterParam.Key;
       let value = filterParam.Value;
-
+      console.log(key,value);
       if (key != null || value != null){
         if (key == "RG"){
-          this.AuxTeste = this.Teste.filter(
-            result => result.RG == value
+          this.AuxMedicalResults = this.MedicalResults.filter(
+            result => result.Patient.RG == value
           );
         } else if (key == "Nome"){
-          this.AuxTeste = this.Teste.filter(
-            result => result.Nome == value
+          this.AuxMedicalResults = this.MedicalResults.filter(
+            result => result.Patient.Name == value
           );
         } else {
-          this.AuxTeste = this.Teste.filter(
-            result => result.Data == value
+          this.AuxMedicalResults = this.MedicalResults.filter(
+            result => result.CreateDate == value
           );
         }
-        this.updateRowsData();
       } else {
         this.clearFilter();
       }
@@ -125,20 +73,19 @@ export class DashboardResultsPage {
         {
           text: 'Filtrar dados',
           handler: () => {
-            console.log('Archive clicked');
+            this.showDashboardFilter();
           }
         },
         {
           text: 'Limpar Filtro',
           handler: () => {
-            console.log('Archive clicked');
+            this.clearFilter();
           }
         },
         {
           text: 'Cancelar',
           role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
+          handler: () => { 
           }
         }
       ]
@@ -158,13 +105,11 @@ export class DashboardResultsPage {
   }
 
   clearFilter (){
-    this.AuxTeste = this.Teste;
-    this.updateRowsData();
+    this.AuxMedicalResults = this.MedicalResults;
   }
 
   ionViewDidLoad() {
     
-   this.updateRowsData();
 
    setTimeout(() => {
     this.getMedicalResults();
@@ -173,17 +118,18 @@ export class DashboardResultsPage {
 
    
   }
-
-  updateRowsData (){
-    this.rows = this.AuxTeste;
-  }
-
   getMedicalResults (){
       return this.medicalResultService.getMedicalResults().subscribe(result => {
         var response = JSON.parse(result["_body"]);
         console.log(response);
-    })
+        this.MedicalResults = response;
+        this.AuxMedicalResults = response;
+    });
    
+  }
+
+  redirectResult (Result){
+    this.navCtrl.push(MedicalResultsPage, {Result : Result });
   }
    
 

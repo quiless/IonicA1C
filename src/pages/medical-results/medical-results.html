@@ -1,10 +1,6 @@
 
 <ion-content padding class="default-bg">
-    <ion-slides paginationClickable=false
-                zoom=true
-                pager=true
-                parallax=true
-                #mySlider>
+    <ion-slides>
 
                
                   
@@ -158,7 +154,7 @@
                   <ion-col col-12>
                       <ion-item>
                         <ion-label>Glicose Estimada média</ion-label>
-                        <ion-input type="text" value="105.41" [readonly]="true" > mg/dl </ion-input>
+                        <ion-input type="text" value="105.41" [readonly]="true" [(ngModel)]="mediumGlycogen" > mg/dl </ion-input>
                       </ion-item>
                       <ion-item>
                           <ion-label>Repetir em</ion-label>
@@ -173,7 +169,13 @@
                     <button ion-button class="a1c-button" full>Enviar Resultado SMS/E-mail</button>
                 </ion-col>
               </ion-row>
-              <ion-row>
+              <ion-row *ngIf="redirectDashboard">
+                  <ion-col col-12>
+                      <button ion-button class="a1c-button" full (click)="redirectDashboardResultsPage()">Voltar</button>
+                  </ion-col>
+                </ion-row>
+
+              <ion-row *ngIf="!redirectDashboard">
                   <ion-col col-6>
                       <button ion-button item-end icon-start full class="a1c-button" (click)='slidePrev(i)'> 
                           <ion-icon name="arrow-back"></ion-icon>Voltar 
@@ -184,25 +186,6 @@
                   </ion-col>
                 </ion-row>
             </ion-grid>
-        
-
-            <!--- <div>
-                  <ion-row>
-                    <ion-col col-12>
-                      <button ion-button class="a1c-button" (click)='slidePrev(i)'> Enviar Resultado SMS/E-mail </button>
-                    </ion-col>
-                  </ion-row>
-                <ion-row>
-                  <ion-col col-6>
-                    <button ion-button item-end icon-start class="a1c-button" (click)='slidePrev(i)'> 
-                        <ion-icon name="arrow-back"></ion-icon>Voltar
-                    </button>
-                  </ion-col>
-                  <ion-col col-6>
-                    <button ion-button class="a1c-button" (click)= 'slideNext(2)'> Finalizar </button>
-                  </ion-col>
-                </ion-row>
-              </div>-->
     </ion-slide> 
       
 

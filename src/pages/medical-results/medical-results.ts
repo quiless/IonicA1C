@@ -1,11 +1,12 @@
 /* Angular */
 
-import { Component, ViewChild } from '@angular/core';
-import { NavController, LoadingController, AlertController } from 'ionic-angular';
+import { Component, ViewChild, AfterViewInit  } from '@angular/core';
+import { NavController, LoadingController, AlertController, NavParams } from 'ionic-angular';
 import { Slides } from 'ionic-angular';
 
 /* Views */
 import {HomePage} from '../home/home'
+import {DashboardResultsPage} from '../dashboard-results/dashboard-results'
 
 /* Models */
 import { Patient } from '../../models/patient'
@@ -47,23 +48,72 @@ export class MedicalResultsPage {
   ];
 
   resultadoDevice = 0;
+  resultParam : any;
+  mediumGlycogen = 0;
+  redirectDashboard : any;
             
   constructor(public navCtrl: NavController,
               private loadingController : LoadingController,
               private alertController : AlertController,
               private medicalResultService : MedicalResultService,
               private patientService : PatientService,
-              private storage : Storage
+              private storage : Storage,
+              private navParams: NavParams
 
             ) {
+
+
+           this.resultParam = navParams.get('Result');
+           console.log(this.resultParam);
+
+           if (this.resultParam != "" && this.resultParam != null){
+
+            this.patient.Name = this.resultParam.Patient.Name;
+            this.patient.Id = this.resultParam.PatientId;
+            this.patient.Email = this.resultParam.Patient.Email;
+            this.patient.RG = this.resultParam.Patient.RG;
+            this.patient.PhoneNumber = this.resultParam.Patient.PhoneNumber;
+            this.resultadoDevice = this.resultParam.PercentGlycogen
+            this.mediumGlycogen = this.resultParam.MediumGlycogen
+            this.medicalResult.RepeatDays = this.resultParam.RepeatDays;
+                setTimeout(() => {
+                  this.slideNext(0);
+                  this.slideNext(1);
+              }, 100)
+            this.redirectDashboard = true;
+           }
+           else {
+            this.redirectDashboard = false;
+           }
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.slides.initialSlide = 1; 
+      this.slides.slideTo(1,500);
+  }, 1000)
   }
 
   ionViewDidLoad() {
     this.slides.lockSwipes(true);
+    setTimeout(() => {
+      this.slides.initialSlide = 1; 
+      this.slides.slideTo(1,500);
+  }, 1000)
+   
   }
   
   redirectHomePage (){
     this.navCtrl.push(HomePage);
+  }
+
+  redirectSlide2(){
+    this.slides.slideTo(2);
+  }
+
+  
+  redirectDashboardResultsPage (Result){
+    this.navCtrl.push(DashboardResultsPage);
   }
 
   savePatient(index){
@@ -100,8 +150,6 @@ export class MedicalResultsPage {
   }
   
   slideNext(index){
-    console.log(index);
-    console.log(this.resultadoDevice);
     if (index == 2) {
       this.redirectHomePage();
     } else if (index == 1 && (this.resultadoDevice < 4 || this.resultadoDevice > 13)){

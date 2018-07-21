@@ -22,11 +22,11 @@
         <ion-row>
             <ion-col col-12>
                 <ion-list style="    background: rgba(0,0,0,0.5);border-radius: 5px;">
-                    <ion-item  *ngFor="let row of rows">
+                    <ion-item  *ngFor="let row of AuxMedicalResults" (click)="redirectResult(row)">
                         
-                        <h2 style="color: #fff">{{row.Nome}}</h2>
-                        <h3 style="color: #fff">RG: {{row.RG}}</h3>
-                        <p style="color: #fff">Data do Exame: {{row.Data}}</p>
+                        <h2 style="color: #fff">Paciente : {{row.Patient.Name}}</h2>
+                        <h3 style="color: #fff">RG: {{row.Patient.RG}}</h3>
+                        <p style="color: #fff">Data do Exame: {{row.CreateDate | date:'dd/MM/yyyy' }}</p>
                     </ion-item>
                 </ion-list>
                 
