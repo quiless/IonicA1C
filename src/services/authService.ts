@@ -7,7 +7,7 @@ import { UrlBase } from '../models/urlBase'
 import { Token } from '../models/token';
 
 /* Native */
-//import { Storage } from '@ionic/storage';
+import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class AuthService {
@@ -15,18 +15,25 @@ export class AuthService {
     header = new Headers();
     options = new RequestOptions();
     url = new UrlBase().getBaseURL();
-    token = "";
+    public token = "";
 
-    constructor(public http: Http){
+    constructor(public http: Http, private storage : Storage){
         this.header.append('Content-Type', 'application/x-www-form-urlencoded');
         this.options = new RequestOptions({
         headers: this.header,
         }); 
+
     }
 
     authenticate(request){
         let data = "grant_type=password&username=" + request.Username + "&password=" + request.Password;
         return this.http.post("https://A1CNOW.azurewebsites.net/token", data, this.options);
+    }
+
+
+
+    public setToken(token){
+        this.token = token;
     }
 
    

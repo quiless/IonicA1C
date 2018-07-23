@@ -8,29 +8,13 @@
 </ion-header>   
   <ion-content class="bg-sem-branco" >
     <div style="margin-top: 10%;">
-        <ion-item>
-            <ion-label stacked> Primeiro Texto</ion-label>
+        <ion-item *ngFor="let row of lstTextConfigs; let i = index">
+            <ion-label stacked> Texto {{ i+1 }} </ion-label>
             <ion-textarea 
-              [(ngModel)]=text1
+              [(ngModel)]=row.TextConfig
               rows="5">
             </ion-textarea>
           </ion-item>
-      
-          <ion-item>
-            <ion-label stacked> Texto se tiver Followup  </ion-label>
-            <ion-textarea 
-              [(ngModel)]=text2
-              rows="5">
-            </ion-textarea>
-          </ion-item>
-          <ion-item>
-              <ion-label stacked> Segundo Texto </ion-label>
-              <ion-textarea 
-                [(ngModel)]=text3
-                rows="5">
-              </ion-textarea>
-            </ion-item>
-        
       </div>
       <ion-row>
         <ion-col col-6>

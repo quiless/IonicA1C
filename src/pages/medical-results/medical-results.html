@@ -18,7 +18,7 @@
         <ion-item>
           <ion-label color="primary" stacked> Sexo </ion-label>
           <ion-select [(ngModel)]="patient.Gender">
-            <ion-option *ngFor="let gender of genders" [value]="gender.value"> {{ gender.Name }} </ion-option>
+            <ion-option *ngFor="let gender of genders" [value]="gender.Value"> {{ gender.Name }} </ion-option>
           </ion-select>
         </ion-item>
         <ion-item>

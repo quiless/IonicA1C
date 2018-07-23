@@ -67,7 +67,7 @@ export class RegisterPersonPage {
       blockUi.dismiss().then(() => {
         let stringMessageError = "";
 
-        JSON.parse(error._body).forEach(function(value){
+        error.error.forEach(function(value){
           stringMessageError += value + "; <br>";
         });
 

@@ -4,7 +4,7 @@ import { DateTime } from "ionic-angular";
 export class Patient {
     Id : number;
     Email : string;
-    Gender : boolean;
+    Gender : number;
     Birthdate: DateTime;
     Name: string;
     RG : string;

@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule, Slides } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpClientModule  } from '@angular/common/http';
 
 /* Native */
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -24,6 +26,7 @@ import { AuthService } from '../services/authService'
 import { UserInfoService } from '../services/userInfoService'
 import { PatientService } from '../services/patientService'
 import { MedicalResultService } from '../services/medicalResultService'
+import { TokenInterceptor } from '../services/interceptorService'
 
 /* Natives */
 import { IonicStorageModule } from '@ionic/storage';
@@ -57,6 +60,7 @@ import { TextsConfigComponent } from '../components/texts-config/texts-config';
       preloadModules: true
     }),
     BrowserModule,
+    HttpClientModule ,
     NgxDatatableModule,
     BrMaskerModule,
     IonicStorageModule.forRoot(),
@@ -80,11 +84,12 @@ import { TextsConfigComponent } from '../components/texts-config/texts-config';
     StatusBar,
     SplashScreen,
     AuthService,
+    HttpClient,
     Slides,
     UserInfoService,
     MedicalResultService,
     PatientService,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
   ]
 })
 export class AppModule {}

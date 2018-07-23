@@ -15,7 +15,7 @@
     <ion-row>
       <ion-item>
         <ion-label color="primary" stacked> RG Paciente : </ion-label>
-        <ion-input type="text"> </ion-input>
+        <ion-input type="text" [(ngModel)]="RG" [brmasker]="{mask:'00.000.000-5', len:12, type:'num'}"> </ion-input>
       </ion-item>
     </ion-row>
     <ion-row>
@@ -39,7 +39,7 @@
 
     <ion-row>
       <ion-col col-12>
-        <button ion-button class="a1c-button"> Importar </button>
+        <button ion-button class="a1c-button" (click)='importMedicalResults()'> Importar </button>
       </ion-col>
     </ion-row>
     <ion-row>

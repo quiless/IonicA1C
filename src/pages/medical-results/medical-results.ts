@@ -77,9 +77,9 @@ export class MedicalResultsPage {
             this.mediumGlycogen = this.resultParam.MediumGlycogen
             this.medicalResult.RepeatDays = this.resultParam.RepeatDays;
                 setTimeout(() => {
-                  this.slideNext(0);
-                  this.slideNext(1);
-              }, 100)
+                  this.slideNext(null);
+                  this.slideNext(null);
+              }, 400)
             this.redirectDashboard = true;
            }
            else {
@@ -107,10 +107,6 @@ export class MedicalResultsPage {
     this.navCtrl.push(HomePage);
   }
 
-  redirectSlide2(){
-    this.slides.slideTo(2);
-  }
-
   
   redirectDashboardResultsPage (Result){
     this.navCtrl.push(DashboardResultsPage);
@@ -128,8 +124,11 @@ export class MedicalResultsPage {
 
     blockUi.present();
 
-    return this.patientService.savePatient(this.patient).subscribe(result => {
+
+    return this.patientService.savePatient(this.patient).subscribe((result : number)=> {
       blockUi.dismiss().then(() => {
+        alert.setMessage("Paciente cadastrado com sucesso!");
+        this.patient.Id = result;
         alert.present().then(() => {
           this.slideNext(null);
         });
@@ -137,8 +136,7 @@ export class MedicalResultsPage {
     }, error =>{
       blockUi.dismiss().then(() => {
         let stringMessageError = "";
-
-        JSON.parse(error._body).forEach(function(value){
+        error.error.forEach(function(value){
           stringMessageError += value + "; <br>";
         });
 
@@ -218,14 +216,12 @@ export class MedicalResultsPage {
     
     if(this.patient.RG == undefined || this.patient.RG == "" ){
       alert.setMessage("Para buscar o paciente por RG, é necessário que o campo RG esteja preenchido.");
-      alert.present();
-      blockUi.dismiss()
+      return alert.present();
     } else {
-      return this.patientService.getPatientByRG(this.patient.RG).subscribe(result => {
+      return this.patientService.getPatientByRG(this.patient.RG).subscribe((result : Patient) => {
         blockUi.dismiss().then(() => {
-          var response = JSON.parse(result["_body"]);
-
-          if (response == null){
+         
+          if (result == null){
             alert.setMessage("Paciente não encontrado. Necessário cadastra-lo.");
             alert.present();
             this.patient.Name = "";
@@ -237,7 +233,9 @@ export class MedicalResultsPage {
           } else {
             alert.setMessage("Paciente encontrado.");
             alert.present();
-            this.patient = response;
+            this.patient = result;
+            console.log(result);
+            console.log(this.patient);
           }
         });
       }, error =>{
@@ -259,9 +257,6 @@ export class MedicalResultsPage {
 
 
   saveMedicalResult(){
-    this.medicalResult.PatientId = this.patient.Id;
-    this.medicalResult.PercentGlycogen = 5.3;
-    this.medicalResult.MediumGlycogen = 105.3;
 
     let blockUi = this.loadingController.create({
       spinner: 'ios'
@@ -271,29 +266,42 @@ export class MedicalResultsPage {
       buttons: ['Ok']
     });
 
+    
+    this.medicalResult.PatientId = this.patient.Id;
+    this.medicalResult.PercentGlycogen = 5.3;
+    this.medicalResult.MediumGlycogen = 105.3;
+
+
+
     blockUi.present();
+    console.log(this.medicalResult);
 
-    return this.medicalResultService.saveMedicalResult(this.medicalResult).subscribe(result => {
-      blockUi.dismiss().then(() => {
-        var response = JSON.parse(result["_body"]);
-        console.log(response);
-        alert.setMessage("Resultado cadastrado com sucesso!")
-        alert.present().then(() => {
-          this.redirectHomePage();
+    if (this.medicalResult.PatientId == null || this.medicalResult.PatientId == 0){
+      alert.setMessage("O paciente não é cadastrado. Necessário cadastra-lô.");
+      alert.present();
+      blockUi.dismiss();
+    } else {
+      return this.medicalResultService.saveMedicalResult(this.medicalResult).subscribe(result => {
+        blockUi.dismiss().then(() => {
+          alert.setMessage("Resultado cadastrado com sucesso!")
+          alert.present().then(() => {
+            this.redirectHomePage();
+          });
+        });
+      }, error =>{
+        blockUi.dismiss().then(() => {
+          let stringMessageError = "";
+  
+          error.error.forEach(function(value){
+            stringMessageError += value + "; <br>";
+          });
+  
+          stringMessageError = stringMessageError.split(";").join("; \n")
+          alert.setMessage(stringMessageError);
+          alert.present();
         });
       });
-    }, error =>{
-      blockUi.dismiss().then(() => {
-        let stringMessageError = "";
-
-        JSON.parse(error._body).forEach(function(value){
-          stringMessageError += value + "; <br>";
-        });
-
-        stringMessageError = stringMessageError.split(";").join("; \n")
-        alert.setMessage(stringMessageError);
-        alert.present();
-      });
-    });
+    }
   }
+
 }

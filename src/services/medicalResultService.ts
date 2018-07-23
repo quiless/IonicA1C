@@ -1,6 +1,7 @@
 /* Angular */
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions, Headers } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 /* Models */
 import { UrlBase } from '../models/urlBase'
@@ -15,9 +16,8 @@ export class MedicalResultService {
     header = new Headers();
     options = new RequestOptions();
     url = new UrlBase().getBaseURL();
-    token = "";
 
-    constructor(private http: Http, private storage : Storage){
+    constructor(private storage : Storage, public http : HttpClient){
         this.header.append('Access-Control-Allow-Origin' , '*');
         this.header.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
         this.header.append('Accept','application/json');
@@ -26,29 +26,21 @@ export class MedicalResultService {
         headers: this.header,
         });
 
-        this.getToken();
 
-    }
-
-    getToken(){
-        this.storage.get("access_token").then((result) => {
-            
-            this.token = result;
-        });
     }
     
     saveMedicalResult(medicalResult){
-        this.options.headers.append('Authorization', 'Bearer ' + this.token);
-        var x = this.http.post(this.url + "Core/SaveMedicalResult", medicalResult, this.options );
+        var x = this.http.post(this.url + "Core/SaveMedicalResult", medicalResult);
   
         return x;
 
     }
 
     getMedicalResults(){
-        this.options.headers.append('Authorization', 'Bearer ' + this.token);
-        return this.http.post(this.url + "Core/GetMedicalResults", {}, this.options);
+        return this.http.post(this.url + "Core/GetMedicalResults", {});
     }
 
-  
+    importMedicalResults(patientRG : string){
+        return this.http.post(this.url + "Core/ImportMedicalResults", JSON.stringify(patientRG));
+    }
 }

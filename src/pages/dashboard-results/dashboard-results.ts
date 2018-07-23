@@ -11,7 +11,7 @@ import { MedicalResultService } from '../../services/medicalResultService'
 
 /* Viwes */
 import { MedicalResultsPage } from '../../pages/medical-results/medical-results'
-
+import { HomePage } from '../../pages/home/home'
 
 @Component({
   selector: 'page-dashboard-results',
@@ -31,12 +31,19 @@ export class DashboardResultsPage {
               private alertController : AlertController,
               private modalController : ModalController,
               private events : Events,
-              public actionSheetCtrl: ActionSheetController,
-              public medicalResultService : MedicalResultService,
+              private actionSheetCtrl: ActionSheetController,
+              private medicalResultService : MedicalResultService,
               private loadingController : LoadingController ) {
+             
+            
+             this.navCtrl.remove(4);
+             
+             this.navCtrl.remove(3);
+    
 
 
     events.subscribe("filterDashResults", (filterParam) => {
+      console.log(filterParam);
       let key = filterParam.Key;
       let value = filterParam.Value;
       console.log(key,value);
@@ -58,6 +65,11 @@ export class DashboardResultsPage {
         this.clearFilter();
       }
     });
+
+    events.subscribe("importPatient", () => {
+      this.getMedicalResults();
+    })
+    
   }
 
   presentActionSheet() {
@@ -67,7 +79,7 @@ export class DashboardResultsPage {
         {
           text: 'Importar paciente',
           handler: () => {
-            console.log('Archive clicked');
+            this.importPatient();
           }
         },
         {
@@ -77,6 +89,7 @@ export class DashboardResultsPage {
           }
         },
         {
+
           text: 'Limpar Filtro',
           handler: () => {
             this.clearFilter();
@@ -119,16 +132,14 @@ export class DashboardResultsPage {
    
   }
   getMedicalResults (){
-      return this.medicalResultService.getMedicalResults().subscribe(result => {
-        var response = JSON.parse(result["_body"]);
-        console.log(response);
-        this.MedicalResults = response;
-        this.AuxMedicalResults = response;
-    });
-   
+      return this.medicalResultService.getMedicalResults().subscribe((result : any[]) => {
+         this.MedicalResults = result;
+         this.AuxMedicalResults = result;
+      })
   }
 
   redirectResult (Result){
+    console.log(Result);
     this.navCtrl.push(MedicalResultsPage, {Result : Result });
   }
    

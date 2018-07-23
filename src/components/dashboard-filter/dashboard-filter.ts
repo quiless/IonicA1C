@@ -33,10 +33,14 @@ export class DashboardFilterComponent {
   }
 
   dismiss(){
-    this.events.publish("filterDashResults", this.filterObject);
     return this.viewController.dismiss();
   }
 
+  
+  filter(){
+    this.events.publish("filterDashResults", this.filterObject);
+    return this.viewController.dismiss();
+  }
 
 
   

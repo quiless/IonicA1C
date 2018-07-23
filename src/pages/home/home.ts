@@ -58,8 +58,7 @@ export class HomePage {
   }
 
   showTextsConfigModal(){
-    let profileModal = this.modalController.create(TextsConfigComponent);
-    profileModal.present();
+    this.navCtrl.push(TextsConfigComponent);
   }
 
   
