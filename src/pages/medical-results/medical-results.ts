@@ -72,6 +72,7 @@ export class MedicalResultsPage {
             this.patient.Id = this.resultParam.PatientId;
             this.patient.Email = this.resultParam.Patient.Email;
             this.patient.RG = this.resultParam.Patient.RG;
+            this.medicalResult.ResultDate = this.resultParam.ResultDate;
             this.patient.PhoneNumber = this.resultParam.Patient.PhoneNumber;
             this.resultadoDevice = this.resultParam.PercentGlycogen
             this.mediumGlycogen = this.resultParam.MediumGlycogen
@@ -109,7 +110,7 @@ export class MedicalResultsPage {
 
   
   redirectDashboardResultsPage (Result){
-    this.navCtrl.push(DashboardResultsPage);
+    this.navCtrl.push(DashboardResultsPage, {Remove : true});
   }
 
   savePatient(index){

@@ -161,7 +161,16 @@
                           <ion-select [(ngModel)]="medicalResult.RepeatDays">
                             <ion-option *ngFor="let days of repeatDays" [value]="days.Value"> {{ days.Name }} </ion-option>
                           </ion-select>
-                        </ion-item> 
+                      </ion-item> 
+                      <ion-item>
+                        <ion-label>Data do Exame </ion-label>
+                        <ion-datetime 
+                          displayFormat="DD/MM/YYYY HH:mm" 
+                          [(ngModel)]="medicalResult.ResultDate"
+                          doneText="Ok"
+                          cancelText="Cancelar">
+                        </ion-datetime>
+                      </ion-item> 
                   </ion-col>
               </ion-row>
               <ion-row>
@@ -170,9 +179,12 @@
                 </ion-col>
               </ion-row>
               <ion-row *ngIf="redirectDashboard">
-                  <ion-col col-12>
+                  <ion-col col-6>
                       <button ion-button class="a1c-button" full (click)="redirectDashboardResultsPage()">Voltar</button>
                   </ion-col>
+                  <ion-col col-6>
+                    <button ion-button class="a1c-button" full (click)="redirectHomePage()"> Menu </button>
+                </ion-col>
                 </ion-row>
 
               <ion-row *ngIf="!redirectDashboard">

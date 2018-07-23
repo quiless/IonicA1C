@@ -11,4 +11,5 @@ export class MedicalResult {
       RepeatDays : number;    
       MediumGlycogen : any;
       PercentGlycogen : any;
+      ResultDate : DateTime
 }

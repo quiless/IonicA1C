@@ -1,6 +1,6 @@
 /* Angular */
 import { Component } from '@angular/core';
-import { NavController, LoadingController, AlertController, ModalController, Events, ActionSheetController } from 'ionic-angular';
+import { NavController, LoadingController, AlertController, ModalController, Events, ActionSheetController, NavParams } from 'ionic-angular';
 
 /* Components */
 import { DashboardFilterComponent } from '../../components/dashboard-filter/dashboard-filter'
@@ -31,17 +31,12 @@ export class DashboardResultsPage {
               private alertController : AlertController,
               private modalController : ModalController,
               private events : Events,
+              private navParams : NavParams,
               private actionSheetCtrl: ActionSheetController,
               private medicalResultService : MedicalResultService,
               private loadingController : LoadingController ) {
              
-            
-             this.navCtrl.remove(4);
-             
-             this.navCtrl.remove(3);
-    
-
-
+ 
     events.subscribe("filterDashResults", (filterParam) => {
       console.log(filterParam);
       let key = filterParam.Key;
@@ -58,7 +53,7 @@ export class DashboardResultsPage {
           );
         } else {
           this.AuxMedicalResults = this.MedicalResults.filter(
-            result => result.CreateDate == value
+            result => result.Patient.Email == value
           );
         }
       } else {
