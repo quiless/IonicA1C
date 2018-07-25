@@ -17,7 +17,7 @@ export class UserInfoService {
 
     header = new Headers();
     options = new RequestOptions();
-    url = new UrlBase().getBaseURL();
+    url = 'http://200.98.116.9:8086/api/';//new UrlBase().getBaseURL();
     token = "";
 
     constructor(private http: HttpClient, private storage : Storage, private httpAngular : Http, private authService : AuthService){

@@ -6,11 +6,16 @@ import { Slides } from 'ionic-angular';
 
 /* Views */
 import { HomePage } from '../home/home';
+import { AuthService } from '../../services/authService';
+import { LoginPage } from '../login/login';
+
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-tutorial',
   templateUrl: 'tutorial.html'
 })
+
 
 export class TutorialPage {
 
@@ -31,10 +36,21 @@ export class TutorialPage {
     }
   ]
 
-  constructor(public navCtrl: NavController
+  videoSrc:string;
+
+  constructor(public navCtrl: NavController,
+              private authService:AuthService,
+              private storage : Storage
             ) {
 
              
+  }
+
+  ionViewCanEnter(){
+    this.authService.userIsLogged().then(x=>{
+      if(!x)
+        this.navCtrl.setRoot(LoginPage);
+    });   
   }
 
   ionViewDidLoad() {
@@ -47,9 +63,16 @@ export class TutorialPage {
   }
   
   slideNext(index){
+   
     if (index == 2){
       this.navCtrl.push(HomePage);
     } else {
+
+      var video = document.getElementsByTagName("video")[index+1];
+      video.pause();
+      video.currentTime = 0;
+      video.play();
+      
       this.slides.lockSwipes(false);
       this.slides.slideNext();
       this.slides.lockSwipes(true);
@@ -57,14 +80,19 @@ export class TutorialPage {
   }
 
   slidePrev(index){
+   
     if (index == 0){
       this.navCtrl.push(HomePage);
     } else {
+      var video = document.getElementsByTagName("video")[index-1];
+      video.pause();
+      video.currentTime = 0;
+      video.play();
+
       this.slides.lockSwipes(false);
       this.slides.slidePrev();  
       this.slides.lockSwipes(true);
     }
   }
 
- 
 }

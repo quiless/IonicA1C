@@ -12,6 +12,8 @@ import { MedicalResultService } from '../../services/medicalResultService'
 /* Viwes */
 import { MedicalResultsPage } from '../../pages/medical-results/medical-results'
 import { HomePage } from '../../pages/home/home'
+import { AuthService } from '../../services/authService';
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-dashboard-results',
@@ -34,7 +36,8 @@ export class DashboardResultsPage {
               private navParams : NavParams,
               private actionSheetCtrl: ActionSheetController,
               private medicalResultService : MedicalResultService,
-              private loadingController : LoadingController ) {
+              private loadingController : LoadingController,
+              private authService:AuthService ) {
              
  
     events.subscribe("filterDashResults", (filterParam) => {
@@ -65,6 +68,13 @@ export class DashboardResultsPage {
       this.getMedicalResults();
     })
     
+  }
+
+  ionViewCanEnter(){
+    this.authService.userIsLogged().then(x=>{
+      if(!x)
+        this.navCtrl.setRoot(LoginPage);
+    });   
   }
 
   presentActionSheet() {
@@ -130,6 +140,7 @@ export class DashboardResultsPage {
       return this.medicalResultService.getMedicalResults().subscribe((result : any[]) => {
          this.MedicalResults = result;
          this.AuxMedicalResults = result;
+         console.log("resultados",result);
       })
   }
 

@@ -11,5 +11,7 @@ export class MedicalResult {
       RepeatDays : number;    
       MediumGlycogen : any;
       PercentGlycogen : any;
-      ResultDate : DateTime
+      ResultDate : DateTime;
+      SendEmailSMS:boolean;
+      Uid:string;
 }

@@ -38,7 +38,12 @@ export class TokenInterceptor implements HttpInterceptor {
         });
         
         console.log(request);
-    return next.handle(request);
+        return next.handle(request).catch(err => { 
+            if(err.status == 401){
+                this.authService.logout();
+            }
+            return Observable.throw(err);
+        });
     }
 
 }

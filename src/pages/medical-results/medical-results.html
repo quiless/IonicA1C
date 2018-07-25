@@ -1,208 +1,214 @@
 
 <ion-content padding class="default-bg">
-    <ion-slides>
+  
+  <ion-row>
+    <ion-col col-12>
+        <ion-slides>
 
                
                   
-      <ion-slide>
-        <div id="titleVideo">  Inserir Resultado </div>
-
-        <ion-item>
-          <ion-label color="primary" stacked> Nome </ion-label>
-          <ion-input type="text" [(ngModel)]=patient.Name ></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label color="primary" stacked> RG </ion-label>
-          <ion-input type="text" [(ngModel)]=patient.RG [brmasker]="{mask:'00.000.000-5', len:12, type:'num'}"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label color="primary" stacked> Sexo </ion-label>
-          <ion-select [(ngModel)]="patient.Gender">
-            <ion-option *ngFor="let gender of genders" [value]="gender.Value"> {{ gender.Name }} </ion-option>
-          </ion-select>
-        </ion-item>
-        <ion-item>
-          <ion-label stacked>Data Nasc.</ion-label>
-          <ion-datetime 
-            [(ngModel)]=patient.Birthdate
-            displayFormat="DD/MM/YYYY" 
-            doneText="Ok"
-            cancelText="Cancelar">
-          </ion-datetime>
-        </ion-item>
-        <ion-item>
-          <ion-label color="primary" stacked> Celular </ion-label>
-          <ion-input type="text" [(ngModel)]=patient.PhoneNumber [brmasker]="{phone: true}" ></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label color="primary" stacked> Email </ion-label>
-          <ion-input type="email" [(ngModel)]=patient.Email ></ion-input>
-        </ion-item>
-
-        <ion-row>
-            <ion-col col-6>
-                <button ion-button class="a1c-button" (click)='getPatientByRG()'> Buscar por RG </button>
-            </ion-col>
-            <ion-col col-6>
-                <button ion-button class="a1c-button" (click)='advanceSlide()'> Avançar </button>
-            </ion-col>
-        </ion-row>
-       
-        <ion-row>
-          <ion-col col-6>
-              <button ion-button class="a1c-button" (click)='advanceUserIsPatient()'> Sou o paciente </button>
-          </ion-col>
-          <ion-col col-6>
-            <button ion-button class="a1c-button" (click)='savePatient(i)'> Cadastrar </button>
-          </ion-col>
-        </ion-row>
-      </ion-slide>
-
+            <ion-slide>
+              <div id="titleVideo">  Inserir Resultado </div>
       
-      <ion-slide>
-        <div style="margin-top: 30%;">  Inserir Resultado </div>
-        <div class="ac1now-device">
-          <div class="label">{{ resultadoDevice }}</div>
-        </div>
-        <ion-item>
-            <ion-label color="primary" stacked> Resultado </ion-label>
-            <ion-input type="number" [min]="4" [max]="13" [(ngModel)]="resultadoDevice"></ion-input>
-          </ion-item>            
-        <div>
-          <ion-row>
-          </ion-row>
-          <ion-row>
-            <ion-col col-6>
-                <button ion-button item-end icon-start class="a1c-button" (click)='slidePrev(i)'> 
-                    <ion-icon name="arrow-back"></ion-icon>Voltar 
-                </button>                            
-            </ion-col>
-            <ion-col col-6>
-              <button ion-button class="a1c-button" (click)= 'slideNext(1)'> Inserir </button>
-            </ion-col>
-          </ion-row>
-        </div>
-      </ion-slide>
-              
-
-
-
-        <ion-slide>         
-                        
-            <ion-grid>
+              <ion-item>
+                <ion-label color="primary" stacked> Nome </ion-label>
+                <ion-input type="text" [(ngModel)]=patient.Name ></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label color="primary" stacked> RG </ion-label>
+                <ion-input type="text" [(ngModel)]=patient.RG [brmasker]="{mask:'00.000.000-5', len:12, type:'num'}"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label color="primary" stacked> Sexo </ion-label>
+                <ion-select [(ngModel)]="patient.Gender">
+                  <ion-option *ngFor="let gender of genders" [value]="gender.Value"> {{ gender.Name }} </ion-option>
+                </ion-select>
+              </ion-item>
+              <ion-item>
+                <ion-label stacked>Data Nasc.</ion-label>
+                <ion-datetime 
+                  [(ngModel)]=patient.Birthdate
+                  displayFormat="DD/MM/YYYY" 
+                  doneText="Ok"
+                  cancelText="Cancelar">
+                </ion-datetime>
+              </ion-item>
+              <ion-item>
+                <ion-label color="primary" stacked> Celular </ion-label>
+                <ion-input type="text" [(ngModel)]=patient.PhoneNumber [brmasker]="{phone: true}" ></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label color="primary" stacked> Email </ion-label>
+                <ion-input type="email" [(ngModel)]=patient.Email ></ion-input>
+              </ion-item>
+      
               <ion-row>
-                <ion-col col-12>
-                    <div class="opaque-box">
-                        <h3>Informações do paciente</h3>
-                        <p><span>Nome:</span>  {{ patient.Name }}</p>
-                        <p><span>E-mail:</span> {{ patient.Email }} </p>
-                        <p><span>Telefone:</span> {{ patient.PhoneNumber }} </p>
-                    </div>
-                </ion-col>
-              </ion-row>
-            
-              <ion-row>
-                <ion-col col-4>
-                    <div class="rangeGraph">
-                      <div class="red rangeBlock">                                                                        
-                          <div class="max">8.0% a<br> 13%</div>
-                      </div>
-                      <div class="yellow rangeBlock">                                      
-                          <div class="max">6.5%</div>
-                      </div>
-                      <div class="green rangeBlock">
-                        <div class="max">5.7%</div>
-                        <div class="min">4.0%</div>
-                      </div>
-
-                      <div *ngIf="resultadoDevice >= 8" class="pointer"  [ngStyle]="{'top': -1 + '%'}">                                        
-                          <span><ion-icon ios="ios-arrow-round-back" md="md-arrow-round-back"></ion-icon> &nbsp; A1C:{{resultadoDevice}}%</span>
-                      </div>
-
-                      <div *ngIf="resultadoDevice > 6.5 && resultadoDevice < 8" class="pointer"  [ngStyle]="{'top': (31 * ((((8 - resultadoDevice) * 100) / 1.5) * 0.01))  + '%'}">                                        
-                          <span><ion-icon ios="ios-arrow-round-back" md="md-arrow-round-back"></ion-icon> &nbsp; A1C:{{resultadoDevice}}%</span>
-                      </div>
-
-                      <div *ngIf="resultadoDevice > 5.7 && resultadoDevice <= 6.5" class="pointer"  [ngStyle]="{'top': ((19 * ((((6.5 - resultadoDevice) * 100) / 0.8) * 0.01)) + 31)  + '%'}">                                        
-                        <span><ion-icon ios="ios-arrow-round-back" md="md-arrow-round-back"></ion-icon> &nbsp; A1C:{{resultadoDevice}}%</span>
-                       </div>
-
-                        <div *ngIf="resultadoDevice >= 4.0 && resultadoDevice <= 5.7" class="pointer"  [ngStyle]="{'top': ((37 * ((((5.7 - resultadoDevice) * 100) / 1.7) * 0.01)) + 50)  + '%'}">                                        
-                          <span><ion-icon ios="ios-arrow-round-back" md="md-arrow-round-back"></ion-icon> &nbsp; A1C:{{resultadoDevice}}%</span>
-                        </div>
-
-                    </div>
-                </ion-col>
-                
-              </ion-row>
-              <ion-row>
-                  <ion-col col-8>
-                      <div style="float: left;margin-left: 30px;">
-                          <div class="legenda-item">
-                            <span style="background-color: red"></span>Diabetes
-                          </div>
-                          <div class="legenda-item">
-                            <span style="background-color: yellow"></span>Pré-Diabetes
-                          </div>
-                          <div class="legenda-item">
-                            <span style="background-color: green"></span>Normal
-                          </div>
-                        </div>
+                  <ion-col col-6>
+                      <button ion-button class="a1c-button" full (click)='getPatientByRG()'> Buscar por RG </button>
                   </ion-col>
+                  <ion-col col-6>
+                      <button ion-button class="a1c-button" full (click)='advanceSlide()'> Avançar </button>
+                  </ion-col>
+              </ion-row>
+             
+              <ion-row>
+                <ion-col col-6>
+                    <button ion-button class="a1c-button" full (click)='advanceUserIsPatient()'> Sou o paciente </button>
+                </ion-col>
+                <ion-col col-6>
+                  <button ion-button class="a1c-button" full (click)='savePatient(i)'> Cadastrar </button>
+                </ion-col>
               </ion-row>
               <ion-row>
                   <ion-col col-12>
-                      <ion-item>
-                        <ion-label>Glicose Estimada média</ion-label>
-                        <ion-input type="text" value="105.41" [readonly]="true" [(ngModel)]="mediumGlycogen" > mg/dl </ion-input>
-                      </ion-item>
-                      <ion-item>
-                          <ion-label>Repetir em</ion-label>
-                          <ion-select [(ngModel)]="medicalResult.RepeatDays">
-                            <ion-option *ngFor="let days of repeatDays" [value]="days.Value"> {{ days.Name }} </ion-option>
-                          </ion-select>
-                      </ion-item> 
-                      <ion-item>
-                        <ion-label>Data do Exame </ion-label>
-                        <ion-datetime 
-                          displayFormat="DD/MM/YYYY HH:mm" 
-                          [(ngModel)]="medicalResult.ResultDate"
-                          doneText="Ok"
-                          cancelText="Cancelar">
-                        </ion-datetime>
-                      </ion-item> 
-                  </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col col-12>
-                    <button ion-button class="a1c-button" full>Enviar Resultado SMS/E-mail</button>
-                </ion-col>
-              </ion-row>
-              <ion-row *ngIf="redirectDashboard">
-                  <ion-col col-6>
-                      <button ion-button class="a1c-button" full (click)="redirectDashboardResultsPage()">Voltar</button>
-                  </ion-col>
-                  <ion-col col-6>
-                    <button ion-button class="a1c-button" full (click)="redirectHomePage()"> Menu </button>
-                </ion-col>
-                </ion-row>
-
-              <ion-row *ngIf="!redirectDashboard">
-                  <ion-col col-6>
-                      <button ion-button item-end icon-start full class="a1c-button" (click)='slidePrev(i)'> 
+                      <button ion-button item-end icon-start full class="a1c-button" (click)='rollbackToHome()'> 
                           <ion-icon name="arrow-back"></ion-icon>Voltar 
                       </button>
                   </ion-col>
-                  <ion-col col-6>
-                      <button ion-button class="a1c-button" full (click)='saveMedicalResult()' >Finalizar</button>
-                  </ion-col>
                 </ion-row>
-            </ion-grid>
-    </ion-slide> 
+            </ion-slide>
       
-
-
-    </ion-slides>
+            
+            <ion-slide>
+              <div style="margin-top: 30%;">  Inserir Resultado </div>
+              <div class="ac1now-device">
+                <div class="label">{{ resultadoDevice }}</div>
+              </div>
+              <ion-item>
+                  <ion-label color="primary" stacked> Resultado </ion-label>
+                  <ion-input type="number" [brmasker]="{mask:'00,00', len:4, type:'num'}" [(ngModel)]="resultadoDevice"></ion-input>
+                </ion-item>            
+              <div>
+                <ion-row>
+                </ion-row>
+                <ion-row>
+                  <ion-col col-6>
+                      <button ion-button item-end icon-start class="a1c-button" (click)='slidePrev(i)'> 
+                          <ion-icon name="arrow-back"></ion-icon>Voltar 
+                      </button>                            
+                  </ion-col>
+                  <ion-col col-6>
+                    <button ion-button class="a1c-button" (click)= 'slideNext(1)'> Inserir </button>
+                  </ion-col>
+                </ion-row>               
+              </div>
+            </ion-slide>
+              <ion-slide>         
+                              
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col col-12>
+                          <div class="opaque-box">
+                              <h3>Informações do paciente</h3>
+                              <p><span>Nome:</span>  {{ patient.Name }}</p>
+                              <p><span>E-mail:</span> {{ patient.Email }} </p>
+                              <p><span>Telefone:</span> {{ patient.PhoneNumber }} </p>
+                          </div>
+                      </ion-col>
+                    </ion-row>
+                  
+                    <ion-row>
+                      <ion-col col-4>
+                          <div class="rangeGraph">
+                            <div class="red rangeBlock">                                                                        
+                                <div class="max"></div>
+                            </div>
+                            <div class="yellow rangeBlock">                                      
+                                <div class="max"></div>
+                            </div>
+                            <div class="green rangeBlock">
+                              <div class="max"></div>
+                              <div class="min"></div>
+                            </div>
+      
+                            <div *ngIf="resultadoDevice >= 8" class="pointer"  [ngStyle]="{'top': -1 + '%'}">                                        
+                                <span><ion-icon ios="ios-arrow-round-back" md="md-arrow-round-back"></ion-icon> &nbsp; A1c:{{resultadoDevice}}%</span>
+                            </div>
+      
+                            <div *ngIf="resultadoDevice > 6.5 && resultadoDevice < 8" class="pointer"  [ngStyle]="{'top': (31 * ((((8 - resultadoDevice) * 100) / 1.5) * 0.01))  + '%'}">                                        
+                                <span><ion-icon ios="ios-arrow-round-back" md="md-arrow-round-back"></ion-icon> &nbsp; A1c:{{resultadoDevice}}%</span>
+                            </div>
+      
+                            <div *ngIf="resultadoDevice > 5.7 && resultadoDevice <= 6.5" class="pointer"  [ngStyle]="{'top': ((19 * ((((6.5 - resultadoDevice) * 100) / 0.8) * 0.01)) + 31)  + '%'}">                                        
+                              <span><ion-icon ios="ios-arrow-round-back" md="md-arrow-round-back"></ion-icon> &nbsp; A1c:{{resultadoDevice}}%</span>
+                             </div>
+      
+                              <div *ngIf="resultadoDevice >= 4.0 && resultadoDevice <= 5.7" class="pointer"  [ngStyle]="{'top': ((37 * ((((5.7 - resultadoDevice) * 100) / 1.7) * 0.01)) + 50)  + '%'}">                                        
+                                <span><ion-icon ios="ios-arrow-round-back" md="md-arrow-round-back"></ion-icon> &nbsp; A1c:{{resultadoDevice}}%</span>
+                              </div>
+      
+                          </div>
+                      </ion-col>
+                      
+                    </ion-row>
+                    <ion-row>
+                        <ion-col col-8>
+                            <div style="float: left;margin-left: 30px;">
+                                <div class="legenda-item">
+                                  <span style="background-color: red"></span>Diabetes (8.0% a 13%)
+                                </div>
+                                <div class="legenda-item">
+                                  <span style="background-color: yellow"></span>Pré-Diabetes (5.8% a 6.5%)
+                                </div>
+                                <div class="legenda-item">
+                                  <span style="background-color: green"></span>Normal 4.0% a 5.7%)
+                                </div>
+                              </div>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col col-12>
+                            <ion-item>
+                              <ion-label>Glicose est. média</ion-label>
+                              <ion-input type="text" [readonly]="true" [(ngModel)]="mediumGlycogen" > mg/dl </ion-input>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label>Repetir em</ion-label>
+                                <ion-select [(ngModel)]="medicalResult.RepeatDays">
+                                  <ion-option *ngFor="let days of repeatDays" [value]="days.Value"> {{ days.Name }} </ion-option>
+                                </ion-select>
+                            </ion-item> 
+                            <ion-item>
+                              <ion-label>Data do Exame </ion-label>
+                              <ion-datetime 
+                                displayFormat="DD/MM/YYYY HH:mm" 
+                                [(ngModel)]="medicalResult.ResultDate"
+                                doneText="Ok"
+                                cancelText="Cancelar">
+                              </ion-datetime>
+                            </ion-item> 
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col col-12>
+                          <button ion-button class="a1c-button" (click)='sendMedicalResultSMSEmail()' full>Enviar Resultado SMS/E-mail</button>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row *ngIf="redirectDashboard">
+                        <ion-col col-6>
+                            <button ion-button class="a1c-button" full (click)="redirectDashboardResultsPage()">Voltar</button>
+                        </ion-col>
+                        <ion-col col-6>
+                          <button ion-button class="a1c-button" full (click)="redirectHomePage()"> Menu </button>
+                      </ion-col>
+                      </ion-row>
+      
+                    <ion-row *ngIf="!redirectDashboard">
+                        <ion-col col-6>
+                            <button ion-button item-end icon-start full class="a1c-button" (click)='slidePrev(i)'> 
+                                <ion-icon name="arrow-back"></ion-icon>Voltar 
+                            </button>
+                        </ion-col>
+                        <ion-col col-6>
+                            <button ion-button class="a1c-button" full (click)='saveMedicalResult(false)' >Finalizar</button>
+                        </ion-col>
+                      </ion-row>
+                  </ion-grid>
+          </ion-slide>       
+          </ion-slides>
+    </ion-col>
+  </ion-row>
+    
 </ion-content>
 
 

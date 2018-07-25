@@ -52,6 +52,8 @@ ion-icon {
     background-image: url('../assets/imgs/bg.png');
     background-repeat: no-repeat;
     background-size:cover;
+    background-blend-mode: darken;
+    background-color: rgba(0,0,0,0.3) !important;
 }
 
 .default-bg.bg-darken{
@@ -68,7 +70,7 @@ ion-icon {
 }
 
 /** Correção do BUG do ion-slide **/
-.scroll-content{
+/**.scroll-content{
     margin-bottom: 0px !important;
     padding-bottom: 0px !important;
-}
+}**/

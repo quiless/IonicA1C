@@ -21,6 +21,8 @@ import { MedicalResultService } from '../../services/medicalResultService'
 
 /* Native */
 import { Storage } from '@ionic/storage';
+import { AuthService } from '../../services/authService';
+import { LoginPage } from '../login/login';
 
 
 @Component({
@@ -49,7 +51,7 @@ export class MedicalResultsPage {
 
   resultadoDevice = 0;
   resultParam : any;
-  mediumGlycogen = 0;
+  mediumGlycogen = "";
   redirectDashboard : any;
             
   constructor(public navCtrl: NavController,
@@ -58,7 +60,8 @@ export class MedicalResultsPage {
               private medicalResultService : MedicalResultService,
               private patientService : PatientService,
               private storage : Storage,
-              private navParams: NavParams
+              private navParams: NavParams,
+              private authService: AuthService
 
             ) {
 
@@ -86,6 +89,13 @@ export class MedicalResultsPage {
            else {
             this.redirectDashboard = false;
            }
+  }
+
+  ionViewCanEnter(){
+    this.authService.userIsLogged().then(x=>{
+      if(!x)
+        this.navCtrl.setRoot(LoginPage);
+    });   
   }
 
   ngAfterViewInit() {
@@ -155,9 +165,12 @@ export class MedicalResultsPage {
       let alert = this.alertController.create({
         buttons: ['Ok']
       });
+     
+      
       alert.setMessage("O resultado não pode ser menor do que 4% ou maior que 13 %");
       return alert.present();
   } else {
+      this.mediumGlycogen = (28.7 * this.resultadoDevice - 46.7) + " mg/dL" ;
       this.slides.lockSwipes(false);
       this.slides.slideNext();
       this.slides.lockSwipes(true);
@@ -175,17 +188,17 @@ export class MedicalResultsPage {
   }
 
   advanceUserIsPatient(){
-    this.storage.get("userInfoLogged").then((result) => {
-      this.patient.Name = result.Name;
-      this.patient.Id = result.Patient.Id;
-      this.patient.Email = result.Email;
-      this.patient.RG = result.RG
-      this.patient.PhoneNumber = result.PhoneNumber;
+    this.authService.authInfo().then((result) => {
+      this.patient.Name = result.userInfo.Name;
+      this.patient.Id = result.userInfo.PatientId;
+      this.patient.Email = result.userInfo.Email;
+      this.patient.RG = result.userInfo.RG
+      this.patient.PhoneNumber = result.userInfo.PhoneNumber;
     }).then(() => {
       this.slideNext(0);
     })
-  }
-
+  };
+  
   advanceSlide(){
 
     let alert = this.alertController.create({
@@ -199,6 +212,10 @@ export class MedicalResultsPage {
     } else {
       this.slideNext(0);
     }
+  }
+
+  rollbackToHome(){
+    this.navCtrl.push(HomePage);
   }
 
   getPatientByRG(){
@@ -217,7 +234,9 @@ export class MedicalResultsPage {
     
     if(this.patient.RG == undefined || this.patient.RG == "" ){
       alert.setMessage("Para buscar o paciente por RG, é necessário que o campo RG esteja preenchido.");
-      return alert.present();
+      blockUi.dismiss().then(() => {
+        return alert.present();
+      });     
     } else {
       return this.patientService.getPatientByRG(this.patient.RG).subscribe((result : Patient) => {
         blockUi.dismiss().then(() => {
@@ -256,8 +275,42 @@ export class MedicalResultsPage {
 
   }
 
+  sendMedicalResultSMSEmail(){
+    if(this.redirectDashboard){
+      let blockUi = this.loadingController.create({
+        spinner: 'ios'
+      });
+  
+      let alert = this.alertController.create({
+        buttons: ['Ok']
+      });
+  
+        
+      blockUi.present();  
+      return this.medicalResultService.sendMedicalResultSMSEmail(this.resultParam).subscribe(result => {
+        blockUi.dismiss().then(() => {
+          alert.setMessage("E-mail/SMS enviado com sucesso!"); 
+          alert.present();       
+        });
+      }, error =>{
+        blockUi.dismiss().then(() => {
+          let stringMessageError = "";
+  
+          error.error.forEach(function(value){
+            stringMessageError += value + "; <br>";
+          });
+  
+          stringMessageError = stringMessageError.split(";").join("; \n")
+          alert.setMessage(stringMessageError);
+          alert.present();
+        });
+      });
+    }else{
+      this.saveMedicalResult(true);
+    }
+  }
 
-  saveMedicalResult(){
+  saveMedicalResult(param){
 
     let blockUi = this.loadingController.create({
       spinner: 'ios'
@@ -269,9 +322,9 @@ export class MedicalResultsPage {
 
     
     this.medicalResult.PatientId = this.patient.Id;
-    this.medicalResult.PercentGlycogen = 5.3;
-    this.medicalResult.MediumGlycogen = 105.3;
-
+    this.medicalResult.PercentGlycogen = this.resultadoDevice;
+    this.medicalResult.MediumGlycogen =  (28.7 * this.resultadoDevice - 46.7);
+    this.medicalResult.SendEmailSMS = param;
 
 
     blockUi.present();

@@ -17,6 +17,9 @@ import { UserInfoService }  from '../../services/userInfoService'
 /* Models */
 import { UserInfoTextConfig } from '../../models/userInfoTextConfig'
 
+import { AuthService } from '../../services/authService';
+import { LoginPage } from '../../pages/login/login';
+
 @Component({
   selector: 'texts-config',
   templateUrl: 'texts-config.html'
@@ -39,6 +42,8 @@ export class TextsConfigComponent {
     private alertController : AlertController,
     private userInfoService : UserInfoService,
     private modalController : ModalController, 
+    public authService: AuthService,
+    public navCtrl: NavController,
     private events : Events) { 
 
       this.lstTextConfigsA1C = [];
@@ -48,7 +53,7 @@ export class TextsConfigComponent {
       var textConfig3 = new UserInfoTextConfig();
   
       textConfig1.TextType = 1;
-      textConfig1.TextConfig = "O valor de Hemoglobina Glicada reportada acima é uma transcrição do valor obtido pelo sistema A1cNow* e reportado em xx/xx/xx as hh:mm. Foi sugerido pelo profissional de saude que este exame (Hemoglobina Glicada) se repita em data próxima a XX/XX/XX. Deseja adicionar este compromisso ao calendário?";
+      textConfig1.TextConfig = "O valor de Hemoglobina Glicada reportada acima é uma transcrição do valor obtido pelo sistema A1cNow* e reportado em %DataExame% as %HoraExame%. Foi sugerido pelo profissional de saude que este exame (Hemoglobina Glicada) se repita em data próxima a %DataProxima%. Deseja adicionar este compromisso ao calendário?";
    
 
       textConfig2.TextType = 2;
@@ -144,6 +149,15 @@ export class TextsConfigComponent {
     });
   }
 
+  
+  logoff(){
+    this.storage.remove("authInfo").then(()=>{
+      this.authService.setToken(undefined);
+      this.navCtrl.push(LoginPage);
+    });
+  
+  }
+ 
 
 
   

@@ -15,7 +15,7 @@ export class MedicalResultService {
 
     header = new Headers();
     options = new RequestOptions();
-    url = new UrlBase().getBaseURL();
+    url = 'http://200.98.116.9:8086/api/';//new UrlBase().getBaseURL();
 
     constructor(private storage : Storage, public http : HttpClient){
         this.header.append('Access-Control-Allow-Origin' , '*');
@@ -35,6 +35,15 @@ export class MedicalResultService {
         return x;
 
     }
+
+
+    sendMedicalResultSMSEmail(medicalResult){
+        var x = this.http.post(this.url + "Core/SendMedicalResultSMSEmail", medicalResult);
+  
+        return x;
+
+    }
+    
 
     getMedicalResults(){
         return this.http.post(this.url + "Core/GetMedicalResults", {});

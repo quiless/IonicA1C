@@ -41,6 +41,7 @@ import { ImportPatientComponent } from '../components/import-patient/import-pati
 import { SplashPage } from '../pages/splash/splash';
 import { TextsConfigComponent } from '../components/texts-config/texts-config';
 
+
 @NgModule({
   declarations: [
     MyApp,
@@ -63,7 +64,7 @@ import { TextsConfigComponent } from '../components/texts-config/texts-config';
     HttpClientModule ,
     NgxDatatableModule,
     BrMaskerModule,
-    IonicStorageModule.forRoot(),
+    IonicStorageModule.forRoot({name:'__a1cNowDb'}),
     HttpModule
   ],
   bootstrap: [IonicApp],

@@ -1,5 +1,5 @@
 import { Component,  } from '@angular/core';
-import { Platform, ModalController } from 'ionic-angular';
+import { Platform, ModalController, Events, NavController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -15,13 +15,17 @@ import { DashboardResultsPage } from '../pages/dashboard-results/dashboard-resul
 export class MyApp {
   rootPage:any = LoginPage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, modalCtrl: ModalController) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, modalCtrl: ModalController,public events: Events) {
     platform.ready().then(() => {
       statusBar.styleDefault();
       //splashScreen.hide();
       //let splash = modalCtrl.create(SplashPage);
       //splash.present();
     });
+
+   
   }
+
+  
 }
 
