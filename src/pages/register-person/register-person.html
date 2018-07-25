@@ -21,6 +21,12 @@
     <ion-input type="email" [(ngModel)]=userInfo.RG [brmasker]="{mask:'00.000.000-5', len:12, type:'num'}"></ion-input>
   </ion-item>
   <ion-item>
+      <ion-label color="primary" stacked> Sexo </ion-label>
+      <ion-select [(ngModel)]="userInfo.Gender">
+        <ion-option *ngFor="let gender of genders" [value]="gender.Value"> {{ gender.Name }} </ion-option>
+      </ion-select>
+    </ion-item>
+  <ion-item>
     <ion-label color="primary" stacked> Senha </ion-label>
     <ion-input type="password" [(ngModel)]=userInfo.Password></ion-input>
   </ion-item>
@@ -30,7 +36,7 @@
   </ion-item>
   <ion-item>
     <ion-label color="primary" stacked> Celular </ion-label>
-    <ion-input type="text" [(ngModel)]=userInfo.PhoneNumber [brmasker]="{phone: true}"></ion-input>
+    <ion-input type="text" [(ngModel)]=userInfo.PhoneNumber [brmasker]="{mask:'(99) 9999-99999',len:15}"></ion-input>
   </ion-item>
   <button class="a1c-button" full ion-button (click)='saveUserInfo()'> Cadastrar </button>
 </ion-content>

@@ -8,6 +8,7 @@ export class UserInfo {
     Id : number;
     Name : string;
     Email :	string;
+    Gender : number;
     RG: string;
     Password : string;
     ConfirmPassword : string;

@@ -27,6 +27,11 @@ export class RegisterPersonPage {
 
   userInfo = new UserInfo();
   
+  genders = [
+    { "Name" : "Masculino", "Value" : 0}, 
+    { "Name" : "Feminino", "Value" : 1}
+  ];
+
 
   constructor(public navCtrl: NavController, 
               private userInfoService : UserInfoService,

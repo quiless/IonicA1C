@@ -210,7 +210,13 @@ export class MedicalResultsPage {
       alert.setMessage("Não é possível avançar sem os dados do paciente.");
       alert.present();
     } else {
+      if(this.patient.Id == undefined || this.patient.Id==0){
+        //Cadastra;
+        this.savePatient(0);
+      }else{
+        //buscado;
       this.slideNext(0);
+      }
     }
   }
 

@@ -46,7 +46,7 @@
                   <ion-col col-6>
                       <button ion-button class="a1c-button" full (click)='getPatientByRG()'> Buscar por RG </button>
                   </ion-col>
-                  <ion-col col-6>
+                  <ion-col col-6 *ngIf="false">
                       <button ion-button class="a1c-button" full (click)='advanceSlide()'> Avançar </button>
                   </ion-col>
               </ion-row>
@@ -56,7 +56,7 @@
                     <button ion-button class="a1c-button" full (click)='advanceUserIsPatient()'> Sou o paciente </button>
                 </ion-col>
                 <ion-col col-6>
-                  <button ion-button class="a1c-button" full (click)='savePatient(i)'> Cadastrar </button>
+                  <button ion-button class="a1c-button" full (click)='advanceSlide(i)'> Avançar </button>
                 </ion-col>
               </ion-row>
               <ion-row>
@@ -172,6 +172,7 @@
                               <ion-label>Data do Exame </ion-label>
                               <ion-datetime 
                                 displayFormat="DD/MM/YYYY HH:mm" 
+                                disabled
                                 [(ngModel)]="medicalResult.ResultDate"
                                 doneText="Ok"
                                 cancelText="Cancelar">
