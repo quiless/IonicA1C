@@ -52,4 +52,8 @@ export class MedicalResultService {
     importMedicalResults(patientRG : string){
         return this.http.post(this.url + "Core/ImportMedicalResults", JSON.stringify(patientRG));
     }
+
+    public download(uid : string){
+        return this.http.get(this.url + "Core/DownloadFile?uid=" + uid);
+    }
 }

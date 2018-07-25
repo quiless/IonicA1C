@@ -17,7 +17,8 @@ import { UserInfo } from '../../models/userInfo'
 import { PatientService } from '../../services/patientService'
 import { MedicalResultService } from '../../services/medicalResultService'
 
-
+/* External */
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 /* Native */
 import { Storage } from '@ionic/storage';
@@ -59,6 +60,7 @@ export class MedicalResultsPage {
               private alertController : AlertController,
               private medicalResultService : MedicalResultService,
               private patientService : PatientService,
+              private inAppBrowser : InAppBrowser,
               private storage : Storage,
               private navParams: NavParams,
               private authService: AuthService
@@ -79,6 +81,7 @@ export class MedicalResultsPage {
             this.patient.PhoneNumber = this.resultParam.Patient.PhoneNumber;
             this.resultadoDevice = this.resultParam.PercentGlycogen
             this.mediumGlycogen = this.resultParam.MediumGlycogen
+            this.medicalResult.Uid = this.resultParam.Uid;
             this.medicalResult.RepeatDays = this.resultParam.RepeatDays;
                 setTimeout(() => {
                   this.slideNext(null);
@@ -288,6 +291,7 @@ export class MedicalResultsPage {
         
       blockUi.present();  
       return this.medicalResultService.sendMedicalResultSMSEmail(this.resultParam).subscribe(result => {
+        console.log(this.resultParam);
         blockUi.dismiss().then(() => {
           alert.setMessage("E-mail/SMS enviado com sucesso!"); 
           alert.present();       
@@ -320,6 +324,24 @@ export class MedicalResultsPage {
       buttons: ['Ok']
     });
 
+    let alert2 = this.alertController.create({
+      buttons: [
+        {
+          text: 'Menu',
+          handler: data => {
+           this.redirectHomePage();
+          }
+        },
+        {
+          text: 'Baixar PDF',
+          handler: data => {
+           this.download();
+           this.redirectHomePage();
+          }
+        }
+      ]
+    });
+
     
     this.medicalResult.PatientId = this.patient.Id;
     this.medicalResult.PercentGlycogen = this.resultadoDevice;
@@ -335,11 +357,12 @@ export class MedicalResultsPage {
       alert.present();
       blockUi.dismiss();
     } else {
-      return this.medicalResultService.saveMedicalResult(this.medicalResult).subscribe(result => {
+      return this.medicalResultService.saveMedicalResult(this.medicalResult).subscribe((result : MedicalResult)=> {
+        this.medicalResult.Uid = result.Uid;
         blockUi.dismiss().then(() => {
-          alert.setMessage("Resultado cadastrado com sucesso!")
-          alert.present().then(() => {
-            this.redirectHomePage();
+          alert2.setMessage("Resultado cadastrado com sucesso!")
+          alert2.present().then(() => {
+            //this.redirectHomePage();
           });
         });
       }, error =>{
@@ -357,5 +380,18 @@ export class MedicalResultsPage {
       });
     }
   }
+
+  download(){
+     var result = this.medicalResultService.download(this.medicalResult.Uid);
+     var source = result.source.source.source;
+
+     source.subscribe(result => {
+      //  var browser = this.inAppBrowser.create(result.url,'_blank');
+      //  browser.executeScript({code: "window.open(" + result.url + ")"});
+      //  browser.show();
+      window.open(result.url,"_system","location=yes,enableViewportScale=yes,hidden=no");
+     });
+  }
+
 
 }

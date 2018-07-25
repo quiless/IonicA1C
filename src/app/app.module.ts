@@ -34,6 +34,7 @@ import { IonicStorageModule } from '@ionic/storage';
 /* External */
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { BrMaskerModule } from 'brmasker-ionic-3';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 /* Components */
 import { DashboardFilterComponent } from '../components/dashboard-filter/dashboard-filter'
@@ -85,6 +86,7 @@ import { TextsConfigComponent } from '../components/texts-config/texts-config';
     StatusBar,
     SplashScreen,
     AuthService,
+    InAppBrowser,
     HttpClient,
     Slides,
     UserInfoService,
