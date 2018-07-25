@@ -76,7 +76,7 @@
               </div>
               <ion-item>
                   <ion-label color="primary" stacked> Resultado </ion-label>
-                  <ion-input type="number" [brmasker]="{mask:'00,00', len:4, type:'num'}" [(ngModel)]="resultadoDevice"></ion-input>
+                  <ion-input type="number" [min]="4" [max]="13"  [(ngModel)]="resultadoDevice"></ion-input>
                 </ion-item>            
               <div>
                 <ion-row>
@@ -145,13 +145,13 @@
                         <ion-col col-8>
                             <div style="float: left;margin-left: 30px;">
                                 <div class="legenda-item">
-                                  <span style="background-color: red"></span>Diabetes (8.0% a 13%)
+                                  <span style="background-color: red"></span>Diabetes (6.5% a 13%)
                                 </div>
                                 <div class="legenda-item">
                                   <span style="background-color: yellow"></span>Pré-Diabetes (5.8% a 6.5%)
                                 </div>
                                 <div class="legenda-item">
-                                  <span style="background-color: green"></span>Normal 4.0% a 5.7%)
+                                  <span style="background-color: green"></span>Normal (4.0% a 5.7%)
                                 </div>
                               </div>
                         </ion-col>
@@ -168,16 +168,10 @@
                                   <ion-option *ngFor="let days of repeatDays" [value]="days.Value"> {{ days.Name }} </ion-option>
                                 </ion-select>
                             </ion-item> 
-                            <ion-item>
+                            <ion-item *ngIf="redirectDashboard">
                               <ion-label>Data do Exame </ion-label>
-                              <ion-datetime 
-                                displayFormat="DD/MM/YYYY HH:mm" 
-                                disabled
-                                [(ngModel)]="medicalResult.ResultDate"
-                                doneText="Ok"
-                                cancelText="Cancelar">
-                              </ion-datetime>
-                            </ion-item> 
+                              <ion-input type="text" [readonly]="true"  [(ngModel)]="medicalResult.ResultDate">  </ion-input>                         
+                            </ion-item> <!--  -->
                         </ion-col>
                     </ion-row>
                     <ion-row>
@@ -185,15 +179,22 @@
                           <button ion-button class="a1c-button" (click)='sendMedicalResultSMSEmail()' full>Enviar Resultado SMS/E-mail</button>
                       </ion-col>
                     </ion-row>
-                    <ion-row *ngIf="redirectDashboard">
-                        <ion-col col-6>
-                            <button ion-button class="a1c-button" full (click)="redirectDashboardResultsPage()">Voltar</button>
+                    
+                      <ion-row *ngIf="redirectDashboard">
+                        <ion-col col-12>
+                            <button ion-button class="a1c-button" full (click)="download()">Baixar PDF</button>
                         </ion-col>
-                        <ion-col col-6>
-                          <button ion-button class="a1c-button" full (click)="redirectHomePage()"> Menu </button>
-                      </ion-col>
                       </ion-row>
-      
+
+                      <ion-row *ngIf="redirectDashboard">
+                          <ion-col col-6>
+                              <button ion-button class="a1c-button" full (click)="redirectDashboardResultsPage()">Voltar</button>
+                          </ion-col>
+                          <ion-col col-6>
+                            <button ion-button class="a1c-button" full (click)="redirectHomePage()"> Menu </button>
+                        </ion-col>
+                        </ion-row>
+
                     <ion-row *ngIf="!redirectDashboard">
                         <ion-col col-6>
                             <button ion-button item-end icon-start full class="a1c-button" (click)='slidePrev(i)'> 
