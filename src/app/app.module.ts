@@ -38,7 +38,6 @@ import { BrMaskerModule } from 'brmasker-ionic-3';
 /* Components */
 import { DashboardFilterComponent } from '../components/dashboard-filter/dashboard-filter'
 import { ImportPatientComponent } from '../components/import-patient/import-patient'
-import { SplashPage } from '../pages/splash/splash';
 import { TextsConfigComponent } from '../components/texts-config/texts-config';
 
 
@@ -53,8 +52,8 @@ import { TextsConfigComponent } from '../components/texts-config/texts-config';
     DashboardFilterComponent,
     ImportPatientComponent,
     DashboardResultsPage,
-    TextsConfigComponent,
-    SplashPage
+    TextsConfigComponent
+    
   ],
   imports: [
     IonicModule.forRoot(MyApp,{
@@ -78,8 +77,8 @@ import { TextsConfigComponent } from '../components/texts-config/texts-config';
     DashboardResultsPage,
     ImportPatientComponent,
     DashboardFilterComponent,
-    TextsConfigComponent,
-    SplashPage
+    TextsConfigComponent
+    
   ],
   providers: [
     StatusBar,

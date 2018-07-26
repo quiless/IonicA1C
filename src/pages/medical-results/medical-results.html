@@ -145,13 +145,13 @@
                         <ion-col col-8>
                             <div style="float: left;margin-left: 30px;">
                                 <div class="legenda-item">
-                                  <span style="background-color: red"></span>Diabetes (6.5% a 13%)
+                                  <span style="background-color: red"></span>Diabetes (acima de 6.5%)
                                 </div>
                                 <div class="legenda-item">
                                   <span style="background-color: yellow"></span>Pré-Diabetes (5.8% a 6.5%)
                                 </div>
                                 <div class="legenda-item">
-                                  <span style="background-color: green"></span>Normal (4.0% a 5.7%)
+                                  <span style="background-color: green"></span>Normal (até 5.7%)
                                 </div>
                               </div>
                         </ion-col>
@@ -170,7 +170,7 @@
                             </ion-item> 
                             <ion-item *ngIf="redirectDashboard">
                               <ion-label>Data do Exame </ion-label>
-                              <ion-input type="text" [readonly]="true"  [(ngModel)]="medicalResult.ResultDate">  </ion-input>                         
+                              <ion-input type="text" [readonly]="true"  [ngModel]="medicalResult.ResultDate | date:'dd/MM/yyyy'" (ngModelChange)="medicalResult.ResultDate = $event"></ion-input>                        
                             </ion-item> <!--  -->
                         </ion-col>
                     </ion-row>
