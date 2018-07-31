@@ -349,7 +349,7 @@ export class MedicalResultsPage {
     this.medicalResult.PatientId = this.patient.Id;
     this.medicalResult.PercentGlycogen = this.resultadoDevice;
     this.medicalResult.MediumGlycogen =  (28.7 * this.resultadoDevice - 46.7);
-    this.medicalResult.SendEmailSMS = param;
+    this.medicalResult.SendEmailSMS = true;
 
 
     blockUi.present();
