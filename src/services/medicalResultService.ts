@@ -33,7 +33,6 @@ export class MedicalResultService {
         var x = this.http.post(this.url + "Core/SaveMedicalResult", medicalResult);
   
         return x;
-
     }
 
 

@@ -39,6 +39,9 @@ import { BrMaskerModule } from 'brmasker-ionic-3';
 import { DashboardFilterComponent } from '../components/dashboard-filter/dashboard-filter'
 import { ImportPatientComponent } from '../components/import-patient/import-patient'
 import { TextsConfigComponent } from '../components/texts-config/texts-config';
+import { OfflineDbProvider } from '../providers/offlineDbProvider';
+import { OfflineDbSyncProvider } from '../providers/offlineDbSyncProvider';
+import { Network } from '@ionic-native/network';
 
 
 @NgModule({
@@ -89,7 +92,10 @@ import { TextsConfigComponent } from '../components/texts-config/texts-config';
     UserInfoService,
     MedicalResultService,
     PatientService,
-    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
+    OfflineDbProvider,
+    OfflineDbSyncProvider,
+    Network
   ]
 })
 export class AppModule {}

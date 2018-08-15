@@ -22,6 +22,7 @@ import { MedicalResultService } from '../../services/medicalResultService'
 import { Storage } from '@ionic/storage';
 import { AuthService } from '../../services/authService';
 import { LoginPage } from '../login/login';
+import { OfflineDbProvider } from '../../providers/offlineDbProvider';
 
 
 @Component({
@@ -61,7 +62,8 @@ export class MedicalResultsPage {
               private patientService : PatientService,
               private storage : Storage,
               private navParams: NavParams,
-              private authService: AuthService
+              private authService: AuthService,
+              private offlineDb:OfflineDbProvider
 
             ) {
 
@@ -386,6 +388,7 @@ export class MedicalResultsPage {
       alert.present();
       blockUi.dismiss();
     } else {
+      this.offlineDb.saveMedicalResult(this.medicalResult);
       return this.medicalResultService.saveMedicalResult(this.medicalResult).subscribe((result : MedicalResult)=> {
         this.medicalResult.Uid = result.Uid;
         blockUi.dismiss().then(() => {

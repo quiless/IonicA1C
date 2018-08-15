@@ -7,6 +7,7 @@ import { LoginPage } from '../pages/login/login';
 import { MedicalResultsPage } from '../pages/medical-results/medical-results';
 import { HomePage } from '../pages/home/home';
 import { DashboardResultsPage } from '../pages/dashboard-results/dashboard-results';
+import { OfflineDbSyncProvider } from '../providers/offlineDbSyncProvider';
 
 @Component({
   templateUrl: 'app.html'
@@ -14,7 +15,8 @@ import { DashboardResultsPage } from '../pages/dashboard-results/dashboard-resul
 export class MyApp {
   rootPage:any = LoginPage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, modalCtrl: ModalController,public events: Events) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, modalCtrl: ModalController,public events: Events,
+    private offlineDbSyncProvider:OfflineDbSyncProvider) {
     platform.ready().then(() => {
       statusBar.styleDefault();
       //splashScreen.hide();
