@@ -35,6 +35,7 @@ export class MedicalResultsPage {
   medicalResult = new MedicalResult();
   
   @ViewChild(Slides) slides: Slides;
+  @ViewChild('myInput') myInput;
 
   genders = [
     { "Name" : "Masculino", "Value" : 0}, 
@@ -63,7 +64,6 @@ export class MedicalResultsPage {
               private authService: AuthService
 
             ) {
-
 
            this.resultParam = navParams.get('Result');
            console.log(this.resultParam);
@@ -123,6 +123,7 @@ export class MedicalResultsPage {
     this.navCtrl.push(DashboardResultsPage, {Remove : true});
   }
 
+
   savePatient(index){
 
     let blockUi = this.loadingController.create({
@@ -166,14 +167,39 @@ export class MedicalResultsPage {
         buttons: ['Ok']
       });
      
-      
       alert.setMessage("O resultado não pode ser menor do que 4% ou maior que 13 %");
       return alert.present();
-  } else {
+    }   
+    else {
+      if (index == 1) {
+        let alert2 = this.alertController.create({
+          buttons: [
+            {
+              text: 'Cancelar',
+              handler: data => {
+               return;
+              }
+            },
+            {
+              text: 'Confirmar',
+              handler: data => {
+                this.mediumGlycogen = (28.7 * this.resultadoDevice - 46.7).toFixed(2) + " mg/dL" ;
+                this.slides.lockSwipes(false);
+                this.slides.slideNext();
+                this.slides.lockSwipes(true);
+              }
+            }
+          ]
+        });
+        alert2.setMessage("Valor inserido: " + this.resultadoDevice);
+        alert2.present();
+        }
+     else {
       this.mediumGlycogen = (28.7 * this.resultadoDevice - 46.7).toFixed(2) + " mg/dL" ;
       this.slides.lockSwipes(false);
       this.slides.slideNext();
       this.slides.lockSwipes(true);
+     }
     }
   }
 

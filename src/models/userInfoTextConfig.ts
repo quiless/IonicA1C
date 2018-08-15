@@ -4,4 +4,5 @@ export class UserInfoTextConfig {
     TextConfig : string;
     TextType: number;
     WasReset : boolean;
+    WasSync : boolean;
 }

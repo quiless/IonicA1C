@@ -13,5 +13,6 @@ export class MedicalResult {
       PercentGlycogen : any;
       ResultDate : any;
       SendEmailSMS:boolean;
+      WasSync: boolean;
       Uid:string;
 }

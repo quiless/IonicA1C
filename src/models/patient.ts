@@ -11,4 +11,5 @@ export class Patient {
 	PhoneNumber	: string;
 	IsDeleted :	boolean;
     UpdateDate : DateTime;
+    WasSync : boolean;
 }

@@ -76,7 +76,7 @@
               </div>
               <ion-item>
                   <ion-label color="primary" stacked> Resultado </ion-label>
-                  <ion-input type="number" [min]="4" [max]="13"  [(ngModel)]="resultadoDevice"></ion-input>
+                  <ion-input type="number"  [brmasker]="{money: true, decimal: 1, len: 3, type: 'num', decimalCaracter: '.'}"  [(ngModel)]="resultadoDevice"></ion-input>
                 </ion-item>            
               <div>
                 <ion-row>
